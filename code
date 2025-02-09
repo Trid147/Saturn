@@ -1,0 +1,831 @@
+--[[local config = {
+	--Ставить кнопки
+	f_speed = Enum.KeyCode.Z,
+	s_speed = Enum.KeyCode.X,
+	t_speed = Enum.KeyCode.C,
+
+	--Скорость среднего бега
+	MediumConfig = 40
+}]]
+
+local player = game.Players.LocalPlayer
+local mouse = player:GetMouse() 
+local UserInputService = game:GetService("UserInputService")
+local RunService = game:GetService("RunService")
+local Teams = game:GetService("Teams")
+local Workspace = game:GetService("Workspace")
+local CoreGui = game:GetService("CoreGui")
+local Players = game:GetService("Players")
+local SaturnCheat = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local Title = Instance.new("TextLabel")
+local Activate = Instance.new("TextButton")
+local Config = Instance.new("TextButton")
+local Info = Instance.new("TextButton")
+local Status = Instance.new("ImageLabel")
+local Credit = Instance.new("TextLabel")
+local Cross = Instance.new("ImageButton")
+
+local ClickSound = "rbxassetid://18755588842"
+local SecretSound = "rbxassetid://6887672613"
+local CheatOn = false
+
+local function playSound()
+	local sound = Instance.new("Sound")
+	sound.SoundId = ClickSound
+	sound.Parent = player
+	sound.Volume = 25
+	sound:Play()
+	spawn(function()  
+		wait(sound.TimeLength)
+		sound:Destroy()
+	end)
+end
+
+local function secretPlay() 
+	local sound = Instance.new("Sound")
+	sound.SoundId = SecretSound
+	sound.Parent = player
+	sound.Volume = 25
+	sound:Play()
+	spawn(function()  
+		wait(sound.TimeLength)
+		sound:Destroy()
+	end)
+end
+
+print("Saturn Cheat has been Activated")
+
+--Base GUI
+SaturnCheat.Name = "Saturn Cheat"
+SaturnCheat.Parent = game.CoreGui
+
+Frame.Name = "Frame"
+Frame.Visible = true
+Frame.Parent = SaturnCheat
+Frame.BackgroundColor3 = Color3.new(0.0980392, 0.0980392, 0.0980392)
+Frame.BorderColor3 = Color3.new(0.0588235, 0.0588235, 0.0588235)
+Frame.BorderSizePixel = 2
+Frame.Position = UDim2.new(0.149, 535,0.821, -578)
+Frame.Size = UDim2.new(0, 310,0, 542)
+Frame.Active = true
+Frame.Draggable = true
+
+Title.Name = "Title"
+Title.Parent = Frame
+Title.BackgroundColor3 = Color3.new(0.705882, 0.235294, 0.352941)
+Title.BorderColor3 = Color3.new(0.180392, 0, 0.431373)
+Title.BorderSizePixel = 2
+Title.Size = UDim2.new(0, 310,0, 33)
+Title.Font = Enum.Font.Highway
+Title.Text = "Saturn Cheats"
+Title.TextColor3 = Color3.new(1, 1, 1)
+Title.FontSize = Enum.FontSize.Size32
+Title.TextSize = 30
+Title.TextStrokeColor3 = Color3.new(0.180392, 0, 0.431373)
+Title.TextStrokeTransparency = 0
+
+Activate.Parent = Frame
+Activate.BackgroundColor3 = Color3.new(0.333333, 1, 0.498039) --0.266667, 0.00392157, 0.627451
+Activate.BorderColor3 = Color3.new(0.180392, 0, 0.431373)
+Activate.BorderSizePixel = 2
+Activate.Position = UDim2.new(0.124, 0,0.822, 0)
+Activate.Size = UDim2.new(0, 50,0, 30)
+Activate.Font = Enum.Font.Highway
+Activate.FontSize = Enum.FontSize.Size28
+Activate.Text = "Activate"
+Activate.TextColor3 = Color3.new(1, 1, 1)
+Activate.TextScaled = true
+Activate.TextStrokeColor3 = Color3.new(0.180392, 0, 0.431373)
+Activate.TextStrokeTransparency = 0
+
+Config.Parent = Frame
+Config.BackgroundColor3 = Color3.new(0.333333, 1, 0.498039) --0.266667, 0.00392157, 0.627451
+Config.BorderColor3 = Color3.new(0.180392, 0, 0.431373)
+Config.BorderSizePixel = 2
+Config.Position = UDim2.new(0.411, 0,0.822, 0)
+Config.Size = UDim2.new(0, 50,0, 30)
+Config.Font = Enum.Font.Highway
+Config.FontSize = Enum.FontSize.Size28
+Config.Text = "Config"
+Config.TextColor3 = Color3.new(1, 1, 1)
+Config.TextScaled = true
+Config.TextStrokeColor3 = Color3.new(0.180392, 0, 0.431373)
+Config.TextStrokeTransparency = 0
+
+Info.Parent = Frame
+Info.BackgroundColor3 = Color3.new(0.333333, 1, 0.498039) --0.266667, 0.00392157, 0.627451
+Info.BorderColor3 = Color3.new(0.180392, 0, 0.431373)
+Info.BorderSizePixel = 2
+Info.Position = UDim2.new(0.711, 0,0.82, 0)
+Info.Size = UDim2.new(0, 50,0, 30)
+Info.Font = Enum.Font.Highway
+Info.FontSize = Enum.FontSize.Size28
+Info.Text = "Info"
+Info.TextColor3 = Color3.new(1, 1, 1)
+Info.TextScaled = true
+Info.TextStrokeColor3 = Color3.new(0.180392, 0, 0.431373)
+Info.TextStrokeTransparency = 0
+
+Status.Name = "Status"
+Status.Parent = Frame
+Status.Size = UDim2.new(0, 15,0, 15)
+Status.Position = UDim2.new(0.921, 0,0.016, 0)
+Status.BackgroundColor3 = Color3.new(0.666667, 0, 0)
+
+Credit.Name = "Credit"
+Credit.Parent = Frame
+Credit.BackgroundColor3 = Color3.new(1, 1, 1)
+Credit.BackgroundTransparency = 1
+Credit.Position = UDim2.new(0.026, 0,0.951, 0)
+Credit.Size = UDim2.new(0, 309,0, 17)
+Credit.Font = Enum.Font.SourceSans
+Credit.FontSize = Enum.FontSize.Size18
+Credit.Text = "Created by den41k4982"
+Credit.TextColor3 = Color3.new(1, 1, 1)
+Credit.TextSize = 16
+Credit.TextStrokeColor3 = Color3.new(0.196078, 0.196078, 0.196078)
+Credit.TextStrokeTransparency = 0
+Credit.TextWrapped = true
+
+Cross.Name = "Cross"
+Cross.Parent = Frame
+Cross.Position = UDim2.new(-0, 0,-0.001, 0)
+Cross.Size = UDim2.new(0, 33,0, 33)
+Cross.ImageColor3 = Color3.new(0.333333, 0.666667, 0.498039)
+Cross.Image = "rbxassetid://73064222625768"
+
+--Function Buttons
+local NoclipButton = Instance.new("TextButton")
+NoclipButton.Name = "NoclipButton"
+NoclipButton.Parent = Frame
+NoclipButton.BackgroundColor3 = Color3.new(0.862745, 0.588235, 0.862745) --0.266667, 0.00392157, 0.627451
+NoclipButton.BorderColor3 = Color3.new(0.180392, 0, 0.431373)
+NoclipButton.BorderSizePixel = 2
+NoclipButton.Position = UDim2.new(0.082, 0,0.112, 0)
+NoclipButton.Size = UDim2.new(0, 154,0, 34)
+NoclipButton.Font = Enum.Font.Highway
+NoclipButton.FontSize = Enum.FontSize.Size28
+NoclipButton.Text = "Noclip"
+NoclipButton.TextColor3 = Color3.new(1, 1, 1)
+NoclipButton.TextScaled = true
+NoclipButton.TextStrokeColor3 = Color3.new(0.180392, 0, 0.431373)
+NoclipButton.TextStrokeTransparency = 0
+
+local FlyJumpButton = Instance.new("TextButton")
+FlyJumpButton.Name = "FlyJumpButton"
+FlyJumpButton.Parent = Frame
+FlyJumpButton.BackgroundColor3 = Color3.new(0.862745, 0.588235, 0.862745) --0.266667, 0.00392157, 0.627451
+FlyJumpButton.BorderColor3 = Color3.new(0.180392, 0, 0.431373)
+FlyJumpButton.BorderSizePixel = 2
+FlyJumpButton.Position = UDim2.new(0.082, 0,0.226, 0)
+FlyJumpButton.Size = UDim2.new(0, 154,0, 34)
+FlyJumpButton.Font = Enum.Font.Highway
+FlyJumpButton.FontSize = Enum.FontSize.Size28
+FlyJumpButton.Text = "FlyJump"
+FlyJumpButton.TextColor3 = Color3.new(1, 1, 1)
+FlyJumpButton.TextScaled = true
+FlyJumpButton.TextStrokeColor3 = Color3.new(0.180392, 0, 0.431373)
+FlyJumpButton.TextStrokeTransparency = 0
+
+local SpeedHackButton = Instance.new("TextButton")
+SpeedHackButton.Name = "SpeedHackButton"
+SpeedHackButton.Parent = Frame
+SpeedHackButton.BackgroundColor3 = Color3.new(0.862745, 0.588235, 0.862745) --0.266667, 0.00392157, 0.627451
+SpeedHackButton.BorderColor3 = Color3.new(0.180392, 0, 0.431373)
+SpeedHackButton.BorderSizePixel = 2
+SpeedHackButton.Position = UDim2.new(0.082, 0,0.34, 0)
+SpeedHackButton.Size = UDim2.new(0, 154,0, 34)
+SpeedHackButton.Font = Enum.Font.Highway
+SpeedHackButton.FontSize = Enum.FontSize.Size28
+SpeedHackButton.Text = "SpeedHack"
+SpeedHackButton.TextColor3 = Color3.new(1, 1, 1)
+SpeedHackButton.TextScaled = true
+SpeedHackButton.TextStrokeColor3 = Color3.new(0.180392, 0, 0.431373)
+SpeedHackButton.TextStrokeTransparency = 0
+
+local AimbotButton = Instance.new("TextButton")
+AimbotButton.Name = "AimbotButton"
+AimbotButton.Parent = Frame
+AimbotButton.BackgroundColor3 = Color3.new(0.862745, 0.588235, 0.862745) --0.266667, 0.00392157, 0.627451
+AimbotButton.BorderColor3 = Color3.new(0.180392, 0, 0.431373)
+AimbotButton.BorderSizePixel = 2
+AimbotButton.Position = UDim2.new(0.082, 0,0.453, 0)
+AimbotButton.Size = UDim2.new(0, 154,0, 34)
+AimbotButton.Font = Enum.Font.Highway
+AimbotButton.FontSize = Enum.FontSize.Size28
+AimbotButton.Text = "Aimbot"
+AimbotButton.TextColor3 = Color3.new(1, 1, 1)
+AimbotButton.TextScaled = true
+AimbotButton.TextStrokeColor3 = Color3.new(0.180392, 0, 0.431373)
+AimbotButton.TextStrokeTransparency = 0
+
+local ESPButton = Instance.new("TextButton")
+ESPButton.Name = "ESPButton"
+ESPButton.Parent = Frame
+ESPButton.BackgroundColor3 = Color3.new(0.862745, 0.588235, 0.862745) --0.266667, 0.00392157, 0.627451
+ESPButton.BorderColor3 = Color3.new(0.180392, 0, 0.431373)
+ESPButton.BorderSizePixel = 2
+ESPButton.Position = UDim2.new(0.082, 0,0.567, 0)
+ESPButton.Size = UDim2.new(0, 154,0, 34)
+ESPButton.Font = Enum.Font.Highway
+ESPButton.FontSize = Enum.FontSize.Size28
+ESPButton.Text = "ESP"
+ESPButton.TextColor3 = Color3.new(1, 1, 1)
+ESPButton.TextScaled = true
+ESPButton.TextStrokeColor3 = Color3.new(0.180392, 0, 0.431373)
+ESPButton.TextStrokeTransparency = 0
+
+local CtrlClickTPButton = Instance.new("TextButton")
+CtrlClickTPButton.Name = "CtrlClickTPButton"
+CtrlClickTPButton.Parent = Frame
+CtrlClickTPButton.BackgroundColor3 = Color3.new(0.862745, 0.588235, 0.862745) --0.266667, 0.00392157, 0.627451
+CtrlClickTPButton.BorderColor3 = Color3.new(0.180392, 0, 0.431373)
+CtrlClickTPButton.BorderSizePixel = 2
+CtrlClickTPButton.Position = UDim2.new(0.082, 0,0.682, 0)
+CtrlClickTPButton.Size = UDim2.new(0, 154,0, 34)
+CtrlClickTPButton.Font = Enum.Font.Highway
+CtrlClickTPButton.FontSize = Enum.FontSize.Size28
+CtrlClickTPButton.Text = "Ctrl+Click TP"
+CtrlClickTPButton.TextColor3 = Color3.new(1, 1, 1)
+CtrlClickTPButton.TextScaled = true
+CtrlClickTPButton.TextStrokeColor3 = Color3.new(0.180392, 0, 0.431373)
+CtrlClickTPButton.TextStrokeTransparency = 0
+
+--FunctionStatuses
+local NoclipStatus = Instance.new("ImageLabel")
+NoclipStatus.Name = "NoclipStatus"
+NoclipStatus.Parent = Frame
+NoclipStatus.Size = UDim2.new(0, 22,0, 22)
+NoclipStatus.Position = UDim2.new(0.674, 0,0.122, 0) --117 = 122
+NoclipStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
+
+local FlyJumpStatus = Instance.new("ImageLabel")
+FlyJumpStatus.Name = "FlyJumpStatus"
+FlyJumpStatus.Parent = Frame
+FlyJumpStatus.Size = UDim2.new(0, 22,0, 22)
+FlyJumpStatus.Position = UDim2.new(0.673, 0,0.236, 0)
+FlyJumpStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
+
+local SpeedHackStatus = Instance.new("ImageLabel")
+SpeedHackStatus.Name = "SpeedHackStatus"
+SpeedHackStatus.Parent = Frame
+SpeedHackStatus.Size = UDim2.new(0, 22,0, 22)
+SpeedHackStatus.Position = UDim2.new(0.671, 0,0.35, 0)
+SpeedHackStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
+
+local AimbotStatus = Instance.new("ImageLabel")
+AimbotStatus.Name = "AimbotStatus"
+AimbotStatus.Parent = Frame
+AimbotStatus.Size = UDim2.new(0, 22,0, 22)
+AimbotStatus.Position = UDim2.new(0.671, 0,0.463, 0)
+AimbotStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
+
+local ESPStatus = Instance.new("ImageLabel")
+ESPStatus.Name = "ESPStatus"
+ESPStatus.Parent = Frame
+ESPStatus.Size = UDim2.new(0, 22,0, 22)
+ESPStatus.Position = UDim2.new(0.671, 0,0.577, 0)
+ESPStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
+
+local CtrlClickTPStatus = Instance.new("ImageLabel")
+CtrlClickTPStatus.Name = "CtrlClickTPStatus"
+CtrlClickTPStatus.Parent = Frame
+CtrlClickTPStatus.Size = UDim2.new(0, 22,0, 22)
+CtrlClickTPStatus.Position = UDim2.new(0.671, 0,0.692, 0)
+CtrlClickTPStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
+
+local AimbotTeamCheckButton = Instance.new("TextButton")
+AimbotTeamCheckButton.Name = "AimbotTeamCheckButton"
+AimbotTeamCheckButton.Parent = Frame
+AimbotTeamCheckButton.BackgroundColor3 = Color3.new(0.666667, 0.333333, 1) --0.266667, 0.00392157, 0.627451
+AimbotTeamCheckButton.BorderColor3 = Color3.new(0.180392, 0, 0.431373)
+AimbotTeamCheckButton.BorderSizePixel = 2
+AimbotTeamCheckButton.Position = UDim2.new(0.082, 0,0.112, 0)
+AimbotTeamCheckButton.Size = UDim2.new(0, 154,0, 34)
+AimbotTeamCheckButton.Font = Enum.Font.Highway
+AimbotTeamCheckButton.FontSize = Enum.FontSize.Size28
+AimbotTeamCheckButton.Text = "Aimbot team check"
+AimbotTeamCheckButton.TextColor3 = Color3.new(1, 1, 1)
+AimbotTeamCheckButton.TextScaled = true
+AimbotTeamCheckButton.TextStrokeColor3 = Color3.new(0.180392, 0, 0.431373)
+AimbotTeamCheckButton.TextStrokeTransparency = 0
+
+local AimbotTeamCheckStatus = Instance.new("ImageLabel")
+AimbotTeamCheckStatus.Name = "AimbotTeamCheckStatus"
+AimbotTeamCheckStatus.Parent = Frame
+AimbotTeamCheckStatus.Size = UDim2.new(0, 22,0, 22)
+AimbotTeamCheckStatus.Position = UDim2.new(0.674, 0,0.122, 0)
+AimbotTeamCheckStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
+
+local MediumSpeedText = Instance.new("TextLabel")
+MediumSpeedText.Name = "MediumSpeedText"
+MediumSpeedText.Parent = Frame
+MediumSpeedText.BackgroundColor3 = Color3.new(1, 1, 1)
+MediumSpeedText.BackgroundTransparency = 1
+MediumSpeedText.Position = UDim2.new(0.082, 0,0.226, 0)
+MediumSpeedText.Size = UDim2.new(0, 118,0, 25)
+MediumSpeedText.Font = Enum.Font.SourceSans
+MediumSpeedText.FontSize = Enum.FontSize.Size18
+MediumSpeedText.Text = "Medium Speed:"
+MediumSpeedText.TextColor3 = Color3.new(1, 1, 1)
+MediumSpeedText.TextSize = 20
+MediumSpeedText.TextStrokeColor3 = Color3.new(0, 1, 0.498039)
+MediumSpeedText.TextStrokeTransparency = 0
+MediumSpeedText.TextWrapped = true
+
+local MediumSpeedVvod = Instance.new("TextBox")
+MediumSpeedVvod.Name = "MediumSpeedVvod"
+MediumSpeedVvod.Parent = Frame
+MediumSpeedVvod.BackgroundColor3 = Color3.new(0, 1, 0.498039)
+MediumSpeedVvod.BackgroundTransparency = 0.5
+MediumSpeedVvod.Position = UDim2.new(0.500, 0,0.230, 0)
+MediumSpeedVvod.Size = UDim2.new(0, 75,0, 25)
+MediumSpeedVvod.Font = Enum.Font.SourceSans
+MediumSpeedVvod.FontSize = Enum.FontSize.Size18
+MediumSpeedVvod.Text = "40"
+MediumSpeedVvod.TextColor3 = Color3.new(0,0,0)
+MediumSpeedVvod.TextSize = 17
+MediumSpeedVvod.TextStrokeColor3 = Color3.new(0, 1, 0.498039)
+MediumSpeedVvod.TextStrokeTransparency = 0
+MediumSpeedVvod.TextWrapped = true
+
+AimbotTeamCheckButton.Visible = false
+AimbotTeamCheckStatus.Visible = false
+MediumSpeedText.Visible = false
+MediumSpeedVvod.Visible = false
+
+local ConfigOpenned = false
+
+local AimbotTeamCheck = false
+
+local Noclip = false
+local FlyJump = false
+local SpeedHack = false
+local Aimbot = false
+local ESP = false
+local CtrlClickTP = false
+
+local FirstSpeed = false
+local SecondSpeed = false
+local ThirdSpeed = false
+
+local function OffCheat()
+	Noclip = false
+	SpeedHack = false
+	ESP = false
+	CtrlClickTP = false
+	FlyJump = false
+	Aimbot = false
+
+	FirstSpeed = false
+	SecondSpeed = false
+	ThirdSpeed = false
+
+	player.Character.UpperTorso.CanCollide = true
+	player.Character.LowerTorso.CanCollide = true
+	player.Character.HumanoidRootPart.CanCollide = true
+
+	player.Character.Humanoid.WalkSpeed = 16
+
+	NoclipStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
+	SpeedHackStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
+	ESPStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
+	CtrlClickTPStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
+	FlyJumpStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
+	AimbotStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
+end
+
+Cross.MouseButton1Click:Connect(function()
+	CheatOn = false
+	SaturnCheat:Destroy()
+	OffCheat()
+	playSound()
+	print("Saturn Cheat has been closed")
+end)
+
+Activate.MouseButton1Click:Connect(function()  
+	if CheatOn then
+		CheatOn = false
+		Status.BackgroundColor3 = Color3.new(0.50, 0, 0)
+		playSound()
+		OffCheat()
+	else
+		CheatOn = true
+		Status.BackgroundColor3 = Color3.new(0, 0.70, 0)
+		playSound()
+	end
+end)
+
+AimbotTeamCheckButton.MouseButton1Click:Connect(function()  
+	if CheatOn then
+		if not AimbotTeamCheck then
+			AimbotTeamCheck = true
+			AimbotTeamCheckStatus.BackgroundColor3 = Color3.new(0, 0.666667, 0)
+			playSound()
+		else
+			AimbotTeamCheck = false
+			AimbotTeamCheckStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
+			playSound()
+		end
+	end
+end)
+
+Config.MouseButton1Click:Connect(function()  
+	if not ConfigOpenned then
+		ConfigOpenned = true
+		NoclipButton.Visible = false
+		NoclipStatus.Visible = false
+		FlyJumpButton.Visible = false
+		FlyJumpStatus.Visible = false
+		SpeedHackButton.Visible = false
+		SpeedHackStatus.Visible = false
+		AimbotButton.Visible = false
+		AimbotStatus.Visible = false
+		ESPButton.Visible = false
+		ESPStatus.Visible = false
+		CtrlClickTPButton.Visible = false
+		CtrlClickTPStatus.Visible = false
+		
+		AimbotTeamCheckButton.Visible = true
+		AimbotTeamCheckStatus.Visible = true
+		MediumSpeedText.Visible = true
+		MediumSpeedVvod.Visible = true
+	else
+		ConfigOpenned = false
+		NoclipButton.Visible = true
+		NoclipStatus.Visible = true
+		FlyJumpButton.Visible = true
+		FlyJumpStatus.Visible = true
+		SpeedHackButton.Visible = true
+		SpeedHackStatus.Visible = true
+		AimbotButton.Visible = true
+		AimbotStatus.Visible = true
+		ESPButton.Visible = true
+		ESPStatus.Visible = true
+		CtrlClickTPButton.Visible = true
+		CtrlClickTPStatus.Visible = true
+		
+		AimbotTeamCheckButton.Visible = false
+		AimbotTeamCheckStatus.Visible = false
+		MediumSpeedText.Visible = false
+		MediumSpeedVvod.Visible = false
+	end
+end)
+
+Info.MouseButton1Click:Connect(function()  
+	secretPlay()
+end)
+
+SpeedHackButton.MouseButton1Click:Connect(function()
+	if CheatOn then
+		if not SpeedHack then
+			SpeedHack = true
+			SpeedHackStatus.BackgroundColor3 = Color3.new(0, 0.666667, 0)
+			playSound()
+		else
+			SpeedHack = false
+			SpeedHackStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
+			player.Character.Humanoid.WalkSpeed = 16
+			playSound()
+		end
+	end
+end)
+
+FlyJumpButton.MouseButton1Click:Connect(function()  
+	if CheatOn then
+		if not FlyJump then
+			FlyJump = true
+			FlyJumpStatus.BackgroundColor3 = Color3.new(0, 0.666667, 0)
+			playSound()
+		else
+			FlyJump = false
+			FlyJumpStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
+			playSound()
+		end
+	end
+end)
+
+NoclipButton.MouseButton1Click:Connect(function()  
+	if CheatOn then
+		if not Noclip then
+			Noclip = true
+			NoclipStatus.BackgroundColor3 = Color3.new(0, 0.666667, 0)
+			playSound()
+		else
+			Noclip = false
+			NoclipStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
+			playSound()
+		end
+	end
+end)
+
+ESPButton.MouseButton1Click:Connect(function()  
+	if CheatOn then
+		if not ESP then
+			ESP = true
+			ESPStatus.BackgroundColor3 = Color3.new(0, 0.666667, 0)
+			playSound()
+		else
+			ESP = false
+			ESPStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
+			playSound()
+		end
+	end
+end)
+
+UserInputService.JumpRequest:Connect(function()  
+	if CheatOn then
+		if FlyJump then
+			player.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Jumping)
+		end
+	end
+end)
+
+UserInputService.InputBegan:Connect(function(input, isTyping)
+	if isTyping then return end
+	if CheatOn then
+		if SpeedHack then
+			if input.KeyCode == Enum.KeyCode.Z then
+				FirstSpeed = true
+				SecondSpeed = false
+				ThirdSpeed = false
+			elseif input.KeyCode == Enum.KeyCode.X then
+				FirstSpeed = false
+				SecondSpeed = true
+				ThirdSpeed = false
+			elseif input.KeyCode == Enum.KeyCode.C then
+				FirstSpeed = false
+				SecondSpeed = false
+				ThirdSpeed = true
+			end
+		end
+	end
+end)
+
+local function getClosestVisiblePlayer(camera)
+	local ray = Ray.new(camera.CFrame.Position, camera.CFrame.LookVector)
+	local closestPlayer = nil
+	local closestDistance = math.huge
+
+	for _, player in pairs(game.Players:GetPlayers()) do
+		if player ~= game.Players.LocalPlayer then
+			local character = player.Character
+			if character and character:FindFirstChild("Head") then
+				local headPosition = character.Head.Position
+				local targetPosition = ray:ClosestPoint(headPosition)
+				local distance = (targetPosition - headPosition).Magnitude
+
+				if distance < closestDistance then
+					closestDistance = distance
+					closestPlayer = player
+				end
+			end
+		end
+	end
+
+	return closestPlayer
+end
+
+local function updateAimbot()
+	if Aimbot then
+		local currentCamera = workspace.CurrentCamera
+		local crosshairPosition = currentCamera.ViewportSize / 2
+		local closestPlayer = getClosestVisiblePlayer(currentCamera)
+
+		if closestPlayer then
+			local headPosition = closestPlayer.Character.Head.Position
+			local headScreenPosition = currentCamera:WorldToScreenPoint(headPosition)
+			local distanceToCrosshair = (Vector2.new(headScreenPosition.X, headScreenPosition.Y) - crosshairPosition).Magnitude
+			local ourTeam = game.Players.LocalPlayer.Team
+			local targetTeam = closestPlayer.Team
+
+			if distanceToCrosshair < 150 and closestPlayer.Character.Humanoid.Health > 0 then
+				if ourTeam ~= targetTeam and AimbotTeamCheck == true then
+					currentCamera.CFrame = currentCamera.CFrame:Lerp(CFrame.new(currentCamera.CFrame.Position, headPosition), 1)
+				elseif AimbotTeamCheck == false then
+					currentCamera.CFrame = currentCamera.CFrame:Lerp(CFrame.new(currentCamera.CFrame.Position, headPosition), 1)
+				end
+			end
+		end
+	end
+end
+
+local aimbotConnection
+
+AimbotButton.MouseButton1Click:Connect(function()  
+	if CheatOn then
+		if not Aimbot then
+			Aimbot = true
+			AimbotStatus.BackgroundColor3 = Color3.new(0, 0.666667, 0)
+			aimbotConnection = RunService.RenderStepped:Connect(updateAimbot)
+			playSound()
+		else
+			Aimbot = false
+			AimbotStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
+			playSound()
+		end
+	end
+end)
+
+UserInputService.InputBegan:Connect(function(input, isTyping)
+	if isTyping then return end
+	if CheatOn then
+		if input.KeyCode == Enum.KeyCode.F then
+			if not Aimbot then
+				Aimbot = true
+				AimbotStatus.BackgroundColor3 = Color3.new(0, 0.666667, 0)
+				aimbotConnection = RunService.RenderStepped:Connect(updateAimbot)
+			else
+				Aimbot = false
+				AimbotStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
+			end
+		end
+	end
+end)
+
+local defaultHighlightColor = Color3.fromRGB(255, 255, 255)
+local outlineColor = Color3.fromRGB(0, 0, 0) 
+local fillTransparency = 0.5
+local outlineTransparency = 0 
+local maxDistance = 1000
+
+local playerDistances = {}
+
+local function getHighlightColor(player)
+	local team = player.Team
+	if team then
+		return team.TeamColor.Color
+	else
+		return defaultHighlightColor
+	end
+end
+
+local function createHighlight(player)
+	local character = player.Character or player.CharacterAdded:Wait()
+	if character and not character:FindFirstChild("PlayerHighlight") and CheatOn then
+		local highlight = Instance.new("Highlight")
+		highlight.Name = "PlayerHighlight"
+		highlight.Adornee = character
+		highlight.FillColor = getHighlightColor(player)
+		highlight.OutlineColor = outlineColor
+		highlight.FillTransparency = fillTransparency
+		highlight.OutlineTransparency = outlineTransparency
+		highlight.Parent = character
+	end
+end
+
+local function removeHighlight(player)
+	local character = player.Character
+	if character then
+		local highlight = character:FindFirstChild("PlayerHighlight")
+		if highlight and CheatOn then
+			highlight:Destroy()
+		end
+	end
+end
+
+local function updateHighlights()
+	local localPlayer = game.Players.LocalPlayer
+	local localCharacter = localPlayer.Character
+	if localCharacter and localCharacter.PrimaryPart then
+		local localPosition = localCharacter.PrimaryPart.Position
+		for _, player in pairs(game.Players:GetPlayers()) do
+			if player ~= localPlayer then
+				local character = player.Character
+				if character and character.PrimaryPart and CheatOn then
+					local distance = (localPosition - character.PrimaryPart.Position).Magnitude
+					playerDistances[player] = distance
+					if distance <= maxDistance then
+						createHighlight(player)
+					else
+						removeHighlight(player)
+					end
+				end
+			end
+		end
+	end
+end
+
+local function batchUpdateHighlights()
+	for _, player in pairs(game.Players:GetPlayers()) do
+		if ESP and playerDistances[player] and playerDistances[player] <= maxDistance then
+			createHighlight(player)
+		else
+			removeHighlight(player)
+		end
+	end
+end
+
+game.Players.PlayerAdded:Connect(function(player)
+	player.CharacterAdded:Connect(function()
+		if ESP then
+			createHighlight(player)
+		end
+	end)
+	player.CharacterRemoving:Connect(function()
+		removeHighlight(player)
+	end)
+end)
+
+game.Players.PlayerRemoving:Connect(function(player)
+	removeHighlight(player)
+	playerDistances[player] = nil
+end)
+
+spawn(function()
+	while true do
+		if ESP then
+			updateHighlights()
+		end
+		wait(0.5)
+	end
+end)
+
+spawn(function()
+	while true do
+		batchUpdateHighlights()
+		wait(0.1)
+	end
+end)
+
+CtrlClickTPButton.MouseButton1Click:Connect(function()  
+	if CheatOn then
+		if not CtrlClickTP then
+			CtrlClickTP = true
+			CtrlClickTPStatus.BackgroundColor3 = Color3.new(0, 0.666667, 0)
+			playSound()
+		else
+			CtrlClickTP = false
+			CtrlClickTPStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
+			playSound()
+		end
+	end
+end)
+
+function GetCharacter() 
+	return game.Players.LocalPlayer.Character 
+end
+
+function Teleport(pos) 
+	local Char = GetCharacter() 
+	if Char then 
+		Char:MoveTo(pos) 
+	end 
+end
+
+UserInputService.InputBegan:Connect(function(input)
+	if CheatOn then
+		if CtrlClickTP then
+			if input.UserInputType == Enum.UserInputType.MouseButton1 and UserInputService:IsKeyDown(Enum.KeyCode.LeftControl) then
+				Teleport(mouse.Hit.p) 
+			end 
+		end
+	end
+end)
+
+local char = player.Character
+
+player.CharacterAdded:Connect(function(character: Model)
+	wait()
+	char = player.Character
+end)
+
+player.Character.Humanoid.Died:Connect(function()
+	FirstSpeed = false
+	SecondSpeed = false
+	ThirdSpeed = false
+	Noclip = false
+end)
+
+spawn(function()  
+	while task.wait() do
+		if CheatOn then
+			if SpeedHack then
+				if FirstSpeed then
+					char.Humanoid.WalkSpeed = 16
+				elseif SecondSpeed then
+					char.Humanoid.WalkSpeed = tonumber(MediumSpeedVvod.ContentText)
+				elseif ThirdSpeed then
+					char.Humanoid.WalkSpeed = 200
+				end
+			end
+		end
+	end
+end)
+
+spawn(function()  
+	while task.wait() do
+		if CheatOn then
+			if Noclip then
+				char.UpperTorso.CanCollide = false
+				char.LowerTorso.CanCollide = false
+				char.HumanoidRootPart.CanCollide = false
+			else
+				char.UpperTorso.CanCollide = true
+				char.LowerTorso.CanCollide = true
+				char.HumanoidRootPart.CanCollide = true
+			end
+		end
+	end
+end)
