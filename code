@@ -547,14 +547,17 @@ UserInputService.InputBegan:Connect(function(input, isTyping)
 	if CheatOn then
 		if SpeedHack then
 			if input.KeyCode == Enum.KeyCode.Z then
+				player.Character.Humanoid.WalkSpeed = 16
 				FirstSpeed = true
 				SecondSpeed = false
 				ThirdSpeed = false
 			elseif input.KeyCode == Enum.KeyCode.X then
+				player.Character.Humanoid.WalkSpeed = tonumber(MediumSpeedVvod.ContentText)
 				FirstSpeed = false
 				SecondSpeed = true
 				ThirdSpeed = false
 			elseif input.KeyCode == Enum.KeyCode.C then
+				player.Character.Humanoid.WalkSpeed = 200
 				FirstSpeed = false
 				SecondSpeed = false
 				ThirdSpeed = true
