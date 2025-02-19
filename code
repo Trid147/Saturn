@@ -8,7 +8,8 @@
 	MediumConfig = 40
 }]]
 
-local player = game.Players.LocalPlayer
+local Players = game:GetService("Players")
+local player = Players.LocalPlayer
 local mouse = player:GetMouse() 
 local UserInputService = game:GetService("UserInputService")
 local RunService = game:GetService("RunService")
@@ -446,7 +447,7 @@ Config.MouseButton1Click:Connect(function()
 		ESPStatus.Visible = false
 		CtrlClickTPButton.Visible = false
 		CtrlClickTPStatus.Visible = false
-		
+
 		AimbotTeamCheckButton.Visible = true
 		AimbotTeamCheckStatus.Visible = true
 		MediumSpeedText.Visible = true
@@ -465,7 +466,7 @@ Config.MouseButton1Click:Connect(function()
 		ESPStatus.Visible = true
 		CtrlClickTPButton.Visible = true
 		CtrlClickTPStatus.Visible = true
-		
+
 		AimbotTeamCheckButton.Visible = false
 		AimbotTeamCheckStatus.Visible = false
 		MediumSpeedText.Visible = false
