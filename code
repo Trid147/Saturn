@@ -16,7 +16,6 @@ local RunService = game:GetService("RunService")
 local Teams = game:GetService("Teams")
 local Workspace = game:GetService("Workspace")
 local CoreGui = game:GetService("CoreGui")
-local Players = game:GetService("Players")
 local SaturnCheat = Instance.new("ScreenGui")
 local Frame = Instance.new("Frame")
 local Title = Instance.new("TextLabel")
@@ -572,8 +571,8 @@ local function getClosestVisiblePlayer(camera)
 	local closestPlayer = nil
 	local closestDistance = math.huge
 
-	for _, player in pairs(game.Players:GetPlayers()) do
-		if player ~= game.Players.LocalPlayer then
+	for _, player in pairs(Players:GetPlayers()) do
+		if player ~= Players.LocalPlayer then
 			local character = player.Character
 			if character and character:FindFirstChild("Head") then
 				local headPosition = character.Head.Position
@@ -601,7 +600,7 @@ local function updateAimbot()
 			local headPosition = closestPlayer.Character.Head.Position
 			local headScreenPosition = currentCamera:WorldToScreenPoint(headPosition)
 			local distanceToCrosshair = (Vector2.new(headScreenPosition.X, headScreenPosition.Y) - crosshairPosition).Magnitude
-			local ourTeam = game.Players.LocalPlayer.Team
+			local ourTeam = Players.LocalPlayer.Team
 			local targetTeam = closestPlayer.Team
 
 			if distanceToCrosshair < 150 and closestPlayer.Character.Humanoid.Health > 0 then
@@ -690,11 +689,11 @@ local function removeHighlight(player)
 end
 
 local function updateHighlights()
-	local localPlayer = game.Players.LocalPlayer
+	local localPlayer = Players.LocalPlayer
 	local localCharacter = localPlayer.Character
 	if localCharacter and localCharacter.PrimaryPart then
 		local localPosition = localCharacter.PrimaryPart.Position
-		for _, player in pairs(game.Players:GetPlayers()) do
+		for _, player in pairs(Players:GetPlayers()) do
 			if player ~= localPlayer then
 				local character = player.Character
 				if character and character.PrimaryPart and CheatOn then
@@ -712,7 +711,7 @@ local function updateHighlights()
 end
 
 local function batchUpdateHighlights()
-	for _, player in pairs(game.Players:GetPlayers()) do
+	for _, player in pairs(Players:GetPlayers()) do
 		if ESP and playerDistances[player] and playerDistances[player] <= maxDistance then
 			createHighlight(player)
 		else
@@ -721,7 +720,7 @@ local function batchUpdateHighlights()
 	end
 end
 
-game.Players.PlayerAdded:Connect(function(player)
+Players.PlayerAdded:Connect(function(player)
 	player.CharacterAdded:Connect(function()
 		if ESP then
 			createHighlight(player)
@@ -732,7 +731,7 @@ game.Players.PlayerAdded:Connect(function(player)
 	end)
 end)
 
-game.Players.PlayerRemoving:Connect(function(player)
+Players.PlayerRemoving:Connect(function(player)
 	removeHighlight(player)
 	playerDistances[player] = nil
 end)
@@ -768,7 +767,7 @@ CtrlClickTPButton.MouseButton1Click:Connect(function()
 end)
 
 function GetCharacter() 
-	return game.Players.LocalPlayer.Character 
+	return Players.LocalPlayer.Character 
 end
 
 function Teleport(pos) 
