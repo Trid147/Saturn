@@ -281,6 +281,13 @@ AimbotStatus.Size = UDim2.new(0, 22,0, 22)
 AimbotStatus.Position = UDim2.new(0.671, 0,0.463, 0)
 AimbotStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
 
+local AimbotActiveG = Instance.new("ImageLabel")
+AimbotActiveG.Name = "AimbotActive"
+AimbotActiveG.Parent = Frame
+AimbotActiveG.Size = UDim2.new(0, 16,0, 16)
+AimbotActiveG.Position = UDim2.new(0.8, 0,0.4675, 0)
+AimbotActiveG.BackgroundColor3 = Color3.new(0.666667, 0, 0)
+
 local ESPStatus = Instance.new("ImageLabel")
 ESPStatus.Name = "ESPStatus"
 ESPStatus.Parent = Frame
@@ -358,6 +365,7 @@ MediumSpeedVvod.Visible = false
 local ConfigOpenned = false
 
 local AimbotTeamCheck = false
+local AimbotActive = false
 
 local Noclip = false
 local FlyJump = false
@@ -591,7 +599,7 @@ local function getClosestVisiblePlayer(camera)
 end
 
 local function updateAimbot()
-	if Aimbot then
+	if AimbotActive then
 		local currentCamera = workspace.CurrentCamera
 		local crosshairPosition = currentCamera.ViewportSize / 2
 		local closestPlayer = getClosestVisiblePlayer(currentCamera)
@@ -635,13 +643,15 @@ UserInputService.InputBegan:Connect(function(input, isTyping)
 	if isTyping then return end
 	if CheatOn then
 		if input.KeyCode == Enum.KeyCode.F then
-			if not Aimbot then
-				Aimbot = true
-				AimbotStatus.BackgroundColor3 = Color3.new(0, 0.666667, 0)
-				aimbotConnection = RunService.RenderStepped:Connect(updateAimbot)
-			else
-				Aimbot = false
-				AimbotStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
+			if Aimbot then
+				if not AimbotActive then
+					AimbotActive = true
+					AimbotActiveG.BackgroundColor3 = Color3.new(0, 0.666667, 0)
+					aimbotConnection = RunService.RenderStepped:Connect(updateAimbot)
+				else
+					AimbotActive = false
+					AimbotActiveG.BackgroundColor3 = Color3.new(0.666667, 0, 0)
+				end
 			end
 		end
 	end
