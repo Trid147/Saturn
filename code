@@ -8,7 +8,7 @@
 	MediumConfig = 40
 }]]
 
-local BLOCK = true
+local BLOCK = false
 local BLOCK_SOUND = "rbxassetid://4871543681"
 
 if not BLOCK then
