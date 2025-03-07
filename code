@@ -360,11 +360,45 @@ if not BLOCK then
 	MediumSpeedVvod.TextStrokeColor3 = Color3.new(0, 1, 0.498039)
 	MediumSpeedVvod.TextStrokeTransparency = 0
 	MediumSpeedVvod.TextWrapped = true
+	
+	local AimButtonText = Instance.new("TextLabel")
+	AimButtonText.Name = "AimButtonText"
+	AimButtonText.Parent = Frame
+	AimButtonText.BackgroundColor3 = Color3.new(1, 1, 1)
+	AimButtonText.BackgroundTransparency = 1
+	AimButtonText.Position = UDim2.new(0.082, 0,0.340, 0)
+	AimButtonText.Size = UDim2.new(0, 118,0, 25)
+	AimButtonText.Font = Enum.Font.SourceSans
+	AimButtonText.FontSize = Enum.FontSize.Size18
+	AimButtonText.Text = "Aim button:"
+	AimButtonText.TextColor3 = Color3.new(1, 1, 1)
+	AimButtonText.TextSize = 20
+	AimButtonText.TextStrokeColor3 = Color3.new(0, 1, 0.498039)
+	AimButtonText.TextStrokeTransparency = 0
+	AimButtonText.TextWrapped = true
+	
+	local AimButtonVvod = Instance.new("TextBox")
+	AimButtonVvod.Name = "AimButtonVvod"
+	AimButtonVvod.Parent = Frame
+	AimButtonVvod.BackgroundColor3 = Color3.new(0, 1, 0.498039)
+	AimButtonVvod.BackgroundTransparency = 0.5
+	AimButtonVvod.Position = UDim2.new(0.500, 0,0.338, 0)
+	AimButtonVvod.Size = UDim2.new(0, 75,0, 25)
+	AimButtonVvod.Font = Enum.Font.SourceSans
+	AimButtonVvod.FontSize = Enum.FontSize.Size18
+	AimButtonVvod.Text = "F"
+	AimButtonVvod.TextColor3 = Color3.new(0,0,0)
+	AimButtonVvod.TextSize = 17
+	AimButtonVvod.TextStrokeColor3 = Color3.new(0, 1, 0.498039)
+	AimButtonVvod.TextStrokeTransparency = 0
+	AimButtonVvod.TextWrapped = true
 
 	AimbotTeamCheckButton.Visible = false
 	AimbotTeamCheckStatus.Visible = false
 	MediumSpeedText.Visible = false
 	MediumSpeedVvod.Visible = false
+	AimButtonText.Visible = false
+	AimButtonVvod.Visible = false
 
 	local ConfigOpenned = false
 
@@ -458,11 +492,14 @@ if not BLOCK then
 			ESPStatus.Visible = false
 			CtrlClickTPButton.Visible = false
 			CtrlClickTPStatus.Visible = false
+			AimbotActiveG.Visible = false
 
 			AimbotTeamCheckButton.Visible = true
 			AimbotTeamCheckStatus.Visible = true
 			MediumSpeedText.Visible = true
 			MediumSpeedVvod.Visible = true
+			AimButtonText.Visible = true
+			AimButtonVvod.Visible = true
 		else
 			ConfigOpenned = false
 			NoclipButton.Visible = true
@@ -477,11 +514,14 @@ if not BLOCK then
 			ESPStatus.Visible = true
 			CtrlClickTPButton.Visible = true
 			CtrlClickTPStatus.Visible = true
+			AimbotActiveG.Visible = true
 
 			AimbotTeamCheckButton.Visible = false
 			AimbotTeamCheckStatus.Visible = false
 			MediumSpeedText.Visible = false
 			MediumSpeedVvod.Visible = false
+			AimButtonText.Visible = false
+			AimButtonVvod.Visible = false
 		end
 	end)
 
@@ -642,11 +682,43 @@ if not BLOCK then
 			end
 		end
 	end)
+	
+	local AimRealButton = Enum.KeyCode.F
+	
+	spawn(function()  
+		while wait(1) do
+			if CheatOn then
+				if AimButtonVvod.ContentText == "F" then
+					AimRealButton = Enum.KeyCode.F
+				elseif AimButtonVvod.ContentText == "T" then
+					AimRealButton = Enum.KeyCode.T
+				elseif AimButtonVvod.ContentText == "Y" then
+					AimRealButton = Enum.KeyCode.Y
+				elseif AimButtonVvod.ContentText == "I" then
+					AimRealButton = Enum.KeyCode.I
+				elseif AimButtonVvod.ContentText == "K" then
+					AimRealButton = Enum.KeyCode.K
+				elseif AimButtonVvod.ContentText == "J" then
+					AimRealButton = Enum.KeyCode.J
+				elseif AimButtonVvod.ContentText == "L" then
+					AimRealButton = Enum.KeyCode.L
+				elseif AimButtonVvod.ContentText == "H" then
+					AimRealButton = Enum.KeyCode.H
+				elseif AimButtonVvod.ContentText == "R" then
+					AimRealButton = Enum.KeyCode.R
+				elseif AimButtonVvod.ContentText == "V" then
+					AimRealButton = Enum.KeyCode.V
+				else
+					print(AimButtonVvod.ContentText)
+				end
+			end
+		end
+	end)
 
 	UserInputService.InputBegan:Connect(function(input, isTyping)
 		if isTyping then return end
 		if CheatOn then
-			if input.KeyCode == Enum.KeyCode.F then
+			if input.KeyCode == AimRealButton then
 				if Aimbot then
 					if not AimbotActive then
 						AimbotActive = true
