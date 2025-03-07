@@ -708,6 +708,16 @@ if not BLOCK then
 					AimRealButton = Enum.KeyCode.R
 				elseif AimButtonVvod.ContentText == "V" then
 					AimRealButton = Enum.KeyCode.V
+				elseif AimButtonVvod.ContentText == "G" then
+					AimRealButton = Enum.KeyCode.G
+				elseif AimButtonVvod.ContentText == "H" then
+					AimRealButton = Enum.KeyCode.H
+				elseif AimButtonVvod.ContentText == "E" then
+					AimRealButton = Enum.KeyCode.E
+				elseif AimButtonVvod.ContentText == "M" then
+					AimRealButton = Enum.KeyCode.M
+				elseif AimButtonVvod.ContentText == "N" then
+					AimRealButton = Enum.KeyCode.N
 				else
 					print(AimButtonVvod.ContentText)
 				end
