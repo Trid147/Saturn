@@ -31,6 +31,10 @@ if not BLOCK then
 	local Status = Instance.new("ImageLabel")
 	local Credit = Instance.new("TextLabel")
 	local Cross = Instance.new("ImageButton")
+	local Scroller = Instance.new("ImageButton")
+	local Pages = Instance.new("Folder")
+	local Page1 = Instance.new("Folder")
+	local Page2 = Instance.new("Folder")
 
 	local ClickSound = "rbxassetid://18755588842"
 	local SecretSound = "rbxassetid://6887672613"
@@ -76,6 +80,25 @@ if not BLOCK then
 	Frame.Size = UDim2.new(0, 310,0, 542)
 	Frame.Active = true
 	Frame.Draggable = true
+	
+	Pages.Parent = Frame
+	Pages.Name = "Pages"
+	
+	Page1.Parent = Pages
+	Page1.Name = "Page1"
+	
+	local PageStatus1 = Instance.new("BoolValue")
+	PageStatus1.Parent = Page1
+	PageStatus1.Name = "Status" 
+	PageStatus1.Value = true
+	
+	Page2.Parent = Pages
+	Page2.Name = "Page2"
+	
+	local PageStatus2 = Instance.new("BoolValue")
+	PageStatus2.Parent = Page2
+	PageStatus2.Name = "Status" 
+	PageStatus2.Value = false
 
 	Title.Name = "Title"
 	Title.Parent = Frame
@@ -160,11 +183,19 @@ if not BLOCK then
 	Cross.Size = UDim2.new(0, 33,0, 33)
 	Cross.ImageColor3 = Color3.new(0.333333, 0.666667, 0.498039)
 	Cross.Image = "rbxassetid://73064222625768"
+	
+	Scroller.Name = "Scroller"
+	Scroller.Parent = Frame
+	Scroller.Position = UDim2.new(0.91, 0,0.071, 0)
+	Scroller.Size = UDim2.new(0, 22,0, 22)
+	Scroller.ImageColor3 = Color3.new(0.333333, 0.666667, 0.498039)
+	Scroller.Image = "rbxassetid://4726772330"
+	Scroller.BackgroundTransparency = 1
 
 	--Function Buttons
 	local NoclipButton = Instance.new("TextButton")
 	NoclipButton.Name = "NoclipButton"
-	NoclipButton.Parent = Frame
+	NoclipButton.Parent = Page1
 	NoclipButton.BackgroundColor3 = Color3.new(0.862745, 0.588235, 0.862745) --0.266667, 0.00392157, 0.627451
 	NoclipButton.BorderColor3 = Color3.new(0.180392, 0, 0.431373)
 	NoclipButton.BorderSizePixel = 2
@@ -180,7 +211,7 @@ if not BLOCK then
 
 	local FlyJumpButton = Instance.new("TextButton")
 	FlyJumpButton.Name = "FlyJumpButton"
-	FlyJumpButton.Parent = Frame
+	FlyJumpButton.Parent = Page1
 	FlyJumpButton.BackgroundColor3 = Color3.new(0.862745, 0.588235, 0.862745) --0.266667, 0.00392157, 0.627451
 	FlyJumpButton.BorderColor3 = Color3.new(0.180392, 0, 0.431373)
 	FlyJumpButton.BorderSizePixel = 2
@@ -196,7 +227,7 @@ if not BLOCK then
 
 	local SpeedHackButton = Instance.new("TextButton")
 	SpeedHackButton.Name = "SpeedHackButton"
-	SpeedHackButton.Parent = Frame
+	SpeedHackButton.Parent = Page1
 	SpeedHackButton.BackgroundColor3 = Color3.new(0.862745, 0.588235, 0.862745) --0.266667, 0.00392157, 0.627451
 	SpeedHackButton.BorderColor3 = Color3.new(0.180392, 0, 0.431373)
 	SpeedHackButton.BorderSizePixel = 2
@@ -212,7 +243,7 @@ if not BLOCK then
 
 	local AimbotButton = Instance.new("TextButton")
 	AimbotButton.Name = "AimbotButton"
-	AimbotButton.Parent = Frame
+	AimbotButton.Parent = Page1
 	AimbotButton.BackgroundColor3 = Color3.new(0.862745, 0.588235, 0.862745) --0.266667, 0.00392157, 0.627451
 	AimbotButton.BorderColor3 = Color3.new(0.180392, 0, 0.431373)
 	AimbotButton.BorderSizePixel = 2
@@ -228,7 +259,7 @@ if not BLOCK then
 
 	local ESPButton = Instance.new("TextButton")
 	ESPButton.Name = "ESPButton"
-	ESPButton.Parent = Frame
+	ESPButton.Parent = Page1
 	ESPButton.BackgroundColor3 = Color3.new(0.862745, 0.588235, 0.862745) --0.266667, 0.00392157, 0.627451
 	ESPButton.BorderColor3 = Color3.new(0.180392, 0, 0.431373)
 	ESPButton.BorderSizePixel = 2
@@ -244,7 +275,7 @@ if not BLOCK then
 
 	local CtrlClickTPButton = Instance.new("TextButton")
 	CtrlClickTPButton.Name = "CtrlClickTPButton"
-	CtrlClickTPButton.Parent = Frame
+	CtrlClickTPButton.Parent = Page1
 	CtrlClickTPButton.BackgroundColor3 = Color3.new(0.862745, 0.588235, 0.862745) --0.266667, 0.00392157, 0.627451
 	CtrlClickTPButton.BorderColor3 = Color3.new(0.180392, 0, 0.431373)
 	CtrlClickTPButton.BorderSizePixel = 2
@@ -257,56 +288,86 @@ if not BLOCK then
 	CtrlClickTPButton.TextScaled = true
 	CtrlClickTPButton.TextStrokeColor3 = Color3.new(0.180392, 0, 0.431373)
 	CtrlClickTPButton.TextStrokeTransparency = 0
+	
+	local FlashlightButton = Instance.new("TextButton")
+	FlashlightButton.Name = "FlashlightButton"
+	FlashlightButton.Parent = Page2
+	FlashlightButton.BackgroundColor3 = Color3.new(0.862745, 0.588235, 0.862745) --0.266667, 0.00392157, 0.627451
+	FlashlightButton.BorderColor3 = Color3.new(0.180392, 0, 0.431373)
+	FlashlightButton.BorderSizePixel = 2
+	FlashlightButton.Position = UDim2.new(0.082, 0,0.112, 0)
+	FlashlightButton.Size = UDim2.new(0, 154,0, 34)
+	FlashlightButton.Font = Enum.Font.Highway
+	FlashlightButton.FontSize = Enum.FontSize.Size28
+	FlashlightButton.Text = "Flashlight"
+	FlashlightButton.TextColor3 = Color3.new(1, 1, 1)
+	FlashlightButton.TextScaled = true
+	FlashlightButton.TextStrokeColor3 = Color3.new(0.180392, 0, 0.431373)
+	FlashlightButton.TextStrokeTransparency = 0
 
 	--FunctionStatuses
 	local NoclipStatus = Instance.new("ImageLabel")
 	NoclipStatus.Name = "NoclipStatus"
-	NoclipStatus.Parent = Frame
+	NoclipStatus.Parent = Page1
 	NoclipStatus.Size = UDim2.new(0, 22,0, 22)
 	NoclipStatus.Position = UDim2.new(0.674, 0,0.122, 0) --117 = 122
 	NoclipStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
 
 	local FlyJumpStatus = Instance.new("ImageLabel")
 	FlyJumpStatus.Name = "FlyJumpStatus"
-	FlyJumpStatus.Parent = Frame
+	FlyJumpStatus.Parent = Page1
 	FlyJumpStatus.Size = UDim2.new(0, 22,0, 22)
 	FlyJumpStatus.Position = UDim2.new(0.673, 0,0.236, 0)
 	FlyJumpStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
 
 	local SpeedHackStatus = Instance.new("ImageLabel")
 	SpeedHackStatus.Name = "SpeedHackStatus"
-	SpeedHackStatus.Parent = Frame
+	SpeedHackStatus.Parent = Page1
 	SpeedHackStatus.Size = UDim2.new(0, 22,0, 22)
 	SpeedHackStatus.Position = UDim2.new(0.671, 0,0.35, 0)
 	SpeedHackStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
 
 	local AimbotStatus = Instance.new("ImageLabel")
 	AimbotStatus.Name = "AimbotStatus"
-	AimbotStatus.Parent = Frame
+	AimbotStatus.Parent = Page1
 	AimbotStatus.Size = UDim2.new(0, 22,0, 22)
 	AimbotStatus.Position = UDim2.new(0.671, 0,0.463, 0)
 	AimbotStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
 
 	local AimbotActiveG = Instance.new("ImageLabel")
 	AimbotActiveG.Name = "AimbotActive"
-	AimbotActiveG.Parent = Frame
+	AimbotActiveG.Parent = Page1
 	AimbotActiveG.Size = UDim2.new(0, 16,0, 16)
 	AimbotActiveG.Position = UDim2.new(0.8, 0,0.4675, 0)
 	AimbotActiveG.BackgroundColor3 = Color3.new(0.666667, 0, 0)
+	
+	local FlashlightActiveG = Instance.new("ImageLabel")
+	FlashlightActiveG.Name = "FlashlightActive"
+	FlashlightActiveG.Parent = Page2
+	FlashlightActiveG.Size = UDim2.new(0, 16,0, 16)
+	FlashlightActiveG.Position = UDim2.new(0.8, 0,0.1265, 0)
+	FlashlightActiveG.BackgroundColor3 = Color3.new(0.666667, 0, 0)
 
 	local ESPStatus = Instance.new("ImageLabel")
 	ESPStatus.Name = "ESPStatus"
-	ESPStatus.Parent = Frame
+	ESPStatus.Parent = Page1
 	ESPStatus.Size = UDim2.new(0, 22,0, 22)
 	ESPStatus.Position = UDim2.new(0.671, 0,0.577, 0)
 	ESPStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
 
 	local CtrlClickTPStatus = Instance.new("ImageLabel")
 	CtrlClickTPStatus.Name = "CtrlClickTPStatus"
-	CtrlClickTPStatus.Parent = Frame
+	CtrlClickTPStatus.Parent = Page1
 	CtrlClickTPStatus.Size = UDim2.new(0, 22,0, 22)
 	CtrlClickTPStatus.Position = UDim2.new(0.671, 0,0.692, 0)
 	CtrlClickTPStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
+	
+	local FlashlightStatus = Instance.new("ImageLabel")
+	FlashlightStatus.Name = "FlashlightStatus"
+	FlashlightStatus.Parent = Page2
+	FlashlightStatus.Size = UDim2.new(0, 22,0, 22)
+	FlashlightStatus.Position = UDim2.new(0.674, 0,0.122, 0) --117 = 122
+	FlashlightStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
 
 	local AimbotTeamCheckButton = Instance.new("TextButton")
 	AimbotTeamCheckButton.Name = "AimbotTeamCheckButton"
@@ -394,6 +455,38 @@ if not BLOCK then
 	AimButtonVvod.TextStrokeColor3 = Color3.new(0, 1, 0.498039)
 	AimButtonVvod.TextStrokeTransparency = 0
 	AimButtonVvod.TextWrapped = true
+	
+	local FlashlightButtonText = Instance.new("TextLabel")
+	FlashlightButtonText.Name = "FlashlightButtonText"
+	FlashlightButtonText.Parent = Frame
+	FlashlightButtonText.BackgroundColor3 = Color3.new(1, 1, 1)
+	FlashlightButtonText.BackgroundTransparency = 1
+	FlashlightButtonText.Position = UDim2.new(0.082, 0,0.450, 0)
+	FlashlightButtonText.Size = UDim2.new(0, 118,0, 25)
+	FlashlightButtonText.Font = Enum.Font.SourceSans
+	FlashlightButtonText.FontSize = Enum.FontSize.Size18
+	FlashlightButtonText.Text = "Flashlight button:"
+	FlashlightButtonText.TextColor3 = Color3.new(1, 1, 1)
+	FlashlightButtonText.TextSize = 20
+	FlashlightButtonText.TextStrokeColor3 = Color3.new(0, 1, 0.498039)
+	FlashlightButtonText.TextStrokeTransparency = 0
+	FlashlightButtonText.TextWrapped = true
+	
+	local FlashlightButtonVvod = Instance.new("TextBox")
+	FlashlightButtonVvod.Name = "FlashlightButtonVvod"
+	FlashlightButtonVvod.Parent = Frame
+	FlashlightButtonVvod.BackgroundColor3 = Color3.new(0, 1, 0.498039)
+	FlashlightButtonVvod.BackgroundTransparency = 0.5
+	FlashlightButtonVvod.Position = UDim2.new(0.500, 0,0.448, 0)
+	FlashlightButtonVvod.Size = UDim2.new(0, 75,0, 25)
+	FlashlightButtonVvod.Font = Enum.Font.SourceSans
+	FlashlightButtonVvod.FontSize = Enum.FontSize.Size18
+	FlashlightButtonVvod.Text = "Q"
+	FlashlightButtonVvod.TextColor3 = Color3.new(0,0,0)
+	FlashlightButtonVvod.TextSize = 17
+	FlashlightButtonVvod.TextStrokeColor3 = Color3.new(0, 1, 0.498039)
+	FlashlightButtonVvod.TextStrokeTransparency = 0
+	FlashlightButtonVvod.TextWrapped = true
 
 	AimbotTeamCheckButton.Visible = false
 	AimbotTeamCheckStatus.Visible = false
@@ -401,11 +494,17 @@ if not BLOCK then
 	MediumSpeedVvod.Visible = false
 	AimButtonText.Visible = false
 	AimButtonVvod.Visible = false
+	FlashlightButton.Visible = false
+	FlashlightStatus.Visible = false
+	FlashlightButtonText.Visible = false
+	FlashlightButtonVvod.Visible = false
+	FlashlightActiveG.Visible = false
 
 	local ConfigOpenned = false
 
 	local AimbotTeamCheck = false
 	local AimbotActive = false
+	local FlashlightActive = false
 
 	local Noclip = false
 	local FlyJump = false
@@ -413,6 +512,7 @@ if not BLOCK then
 	local Aimbot = false
 	local ESP = false
 	local CtrlClickTP = false
+	local Flashlight = false
 
 	local FirstSpeed = false
 	local SecondSpeed = false
@@ -425,6 +525,7 @@ if not BLOCK then
 		CtrlClickTP = false
 		FlyJump = false
 		Aimbot = false
+		flashlight = false
 
 		FirstSpeed = false
 		SecondSpeed = false
@@ -443,6 +544,44 @@ if not BLOCK then
 		FlyJumpStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
 		AimbotStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
 	end
+	
+	local function TurnPage()
+		if PageStatus1.Value == true then
+			
+			PageStatus1.Value = false
+			PageStatus2.Value = true
+			
+			for k,v in Page1:GetChildren() do
+				if not v:IsA("BoolValue") then
+					v.Visible = false
+				end
+			end
+			
+			for k,v in Page2:GetChildren() do
+				if not v:IsA("BoolValue") then
+					v.Visible = true
+				end
+			end
+			
+		else
+			
+			PageStatus1.Value = true
+			PageStatus2.Value = false
+			
+			for k,v in Page1:GetChildren() do
+				if not v:IsA("BoolValue") then
+					v.Visible = true
+				end
+			end
+
+			for k,v in Page2:GetChildren() do
+				if not v:IsA("BoolValue") then
+					v.Visible = false
+				end
+			end
+			
+		end
+	end
 
 	Cross.MouseButton1Click:Connect(function()
 		CheatOn = false
@@ -451,6 +590,13 @@ if not BLOCK then
 		playSound()
 		print("Saturn Cheat has been closed")
 		script:Destroy()
+	end)
+	
+	Scroller.MouseButton1Click:Connect(function()
+		if CheatOn then
+			playSound()
+			TurnPage()
+		end
 	end)
 
 	Activate.MouseButton1Click:Connect(function()  
@@ -496,6 +642,7 @@ if not BLOCK then
 			CtrlClickTPButton.Visible = false
 			CtrlClickTPStatus.Visible = false
 			AimbotActiveG.Visible = false
+			FlashlightActiveG.Visible = false
 
 			AimbotTeamCheckButton.Visible = true
 			AimbotTeamCheckStatus.Visible = true
@@ -503,21 +650,11 @@ if not BLOCK then
 			MediumSpeedVvod.Visible = true
 			AimButtonText.Visible = true
 			AimButtonVvod.Visible = true
+			FlashlightButtonText.Visible = true
+			FlashlightButtonVvod.Visible = true
 		else
 			ConfigOpenned = false
-			NoclipButton.Visible = true
-			NoclipStatus.Visible = true
-			FlyJumpButton.Visible = true
-			FlyJumpStatus.Visible = true
-			SpeedHackButton.Visible = true
-			SpeedHackStatus.Visible = true
-			AimbotButton.Visible = true
-			AimbotStatus.Visible = true
-			ESPButton.Visible = true
-			ESPStatus.Visible = true
-			CtrlClickTPButton.Visible = true
-			CtrlClickTPStatus.Visible = true
-			AimbotActiveG.Visible = true
+			TurnPage()
 
 			AimbotTeamCheckButton.Visible = false
 			AimbotTeamCheckStatus.Visible = false
@@ -525,8 +662,30 @@ if not BLOCK then
 			MediumSpeedVvod.Visible = false
 			AimButtonText.Visible = false
 			AimButtonVvod.Visible = false
+			FlashlightButtonText.Visible = false
+			FlashlightButtonVvod.Visible = false
 		end
 	end)
+	
+	local function PlayFlashlightClick()
+		local sound = Instance.new("Sound")
+		sound.SoundId = "rbxassetid://9070807695"
+		sound.Parent = game.Players.LocalPlayer
+		sound.Volume = 25
+		sound:Play()
+		wait(2)
+		sound:Destroy()
+	end
+	
+	local function SpawnLight()
+		local Flashlight = Instance.new("PointLight")
+		Flashlight.Name = "Flashlight"
+		Flashlight.Brightness = 5
+		Flashlight.Range = 35
+		Flashlight.Color = Color3.new(0.784314, 0.784314, 0.496078)
+		Flashlight.Parent = player.Character.Head
+		Flashlight.Enabled = true
+	end
 
 	Info.MouseButton1Click:Connect(function()  
 		secretPlay()
@@ -556,6 +715,20 @@ if not BLOCK then
 			else
 				FlyJump = false
 				FlyJumpStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
+				playSound()
+			end
+		end
+	end)
+	
+	FlashlightButton.MouseButton1Click:Connect(function()  
+		if CheatOn then
+			if not Flashlight then
+				Flashlight = true
+				FlashlightStatus.BackgroundColor3 = Color3.new(0, 0.666667, 0)
+				playSound()
+			else
+				Flashlight = false
+				FlashlightStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
 				playSound()
 			end
 		end
@@ -687,6 +860,7 @@ if not BLOCK then
 	end)
 
 	local AimRealButton = Enum.KeyCode.F
+	local FlashlightRealButton = Enum.KeyCode.Q
 
 	spawn(function()  
 		while wait(1) do
@@ -721,8 +895,46 @@ if not BLOCK then
 					AimRealButton = Enum.KeyCode.M
 				elseif AimButtonVvod.ContentText == "N" then
 					AimRealButton = Enum.KeyCode.N
+				elseif AimButtonVvod.ContentText == "Q" then
+					AimRealButton = Enum.KeyCode.Q
 				else
 					print(AimButtonVvod.ContentText)
+				end
+				
+				if FlashlightButtonVvod.ContentText == "F" then
+					FlashlightRealButton = Enum.KeyCode.F
+				elseif FlashlightButtonVvod.ContentText == "T" then
+					FlashlightRealButton = Enum.KeyCode.T
+				elseif FlashlightButtonVvod.ContentText == "Y" then
+					FlashlightRealButton = Enum.KeyCode.Y
+				elseif FlashlightButtonVvod.ContentText == "I" then
+					FlashlightRealButton = Enum.KeyCode.I
+				elseif FlashlightButtonVvod.ContentText == "K" then
+					FlashlightRealButton = Enum.KeyCode.K
+				elseif FlashlightButtonVvod.ContentText == "J" then
+					FlashlightRealButton = Enum.KeyCode.J
+				elseif FlashlightButtonVvod.ContentText == "L" then
+					FlashlightRealButton = Enum.KeyCode.L
+				elseif FlashlightButtonVvod.ContentText == "H" then
+					FlashlightRealButton = Enum.KeyCode.H
+				elseif FlashlightButtonVvod.ContentText == "R" then
+					FlashlightRealButton = Enum.KeyCode.R
+				elseif FlashlightButtonVvod.ContentText == "V" then
+					FlashlightRealButton = Enum.KeyCode.V
+				elseif FlashlightButtonVvod.ContentText == "G" then
+					FlashlightRealButton = Enum.KeyCode.G
+				elseif FlashlightButtonVvod.ContentText == "H" then
+					FlashlightRealButton = Enum.KeyCode.H
+				elseif FlashlightButtonVvod.ContentText == "E" then
+					FlashlightRealButton = Enum.KeyCode.E
+				elseif FlashlightButtonVvod.ContentText == "M" then
+					FlashlightRealButton = Enum.KeyCode.M
+				elseif FlashlightButtonVvod.ContentText == "N" then
+					FlashlightRealButton = Enum.KeyCode.N
+				elseif FlashlightButtonVvod.ContentText == "Q" then
+					FlashlightRealButton = Enum.KeyCode.Q
+				else
+					print(FlashlightButtonVvod.ContentText)
 				end
 			end
 		end
@@ -741,6 +953,20 @@ if not BLOCK then
 						AimbotActive = false
 						AimbotActiveG.BackgroundColor3 = Color3.new(0.666667, 0, 0)
 					end
+				end
+			end
+			if input.KeyCode == FlashlightRealButton then
+				if Flashlight then
+					if not FlashlightActive then
+						FlashlightActive = true
+						FlashlightActiveG.BackgroundColor3 = Color3.new(0, 0.666667, 0)
+						SpawnLight()
+					else
+						FlashlightActive = false
+						FlashlightActiveG.BackgroundColor3 = Color3.new(0.666667, 0, 0)
+						player.Character.Head:FindFirstChild("Flashlight"):Destroy()
+					end
+					PlayFlashlightClick()
 				end
 			end
 		end
