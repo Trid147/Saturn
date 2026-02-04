@@ -80,21 +80,21 @@ if not BLOCK then
 	Frame.Size = UDim2.new(0, 310,0, 542)
 	Frame.Active = true
 	Frame.Draggable = true
-	
+
 	Pages.Parent = Frame
 	Pages.Name = "Pages"
-	
+
 	Page1.Parent = Pages
 	Page1.Name = "Page1"
-	
+
 	local PageStatus1 = Instance.new("BoolValue")
 	PageStatus1.Parent = Page1
 	PageStatus1.Name = "Status" 
 	PageStatus1.Value = true
-	
+
 	Page2.Parent = Pages
 	Page2.Name = "Page2"
-	
+
 	local PageStatus2 = Instance.new("BoolValue")
 	PageStatus2.Parent = Page2
 	PageStatus2.Name = "Status" 
@@ -183,7 +183,7 @@ if not BLOCK then
 	Cross.Size = UDim2.new(0, 33,0, 33)
 	Cross.ImageColor3 = Color3.new(0.333333, 0.666667, 0.498039)
 	Cross.Image = "rbxassetid://73064222625768"
-	
+
 	Scroller.Name = "Scroller"
 	Scroller.Parent = Frame
 	Scroller.Position = UDim2.new(0.91, 0,0.071, 0)
@@ -288,7 +288,7 @@ if not BLOCK then
 	CtrlClickTPButton.TextScaled = true
 	CtrlClickTPButton.TextStrokeColor3 = Color3.new(0.180392, 0, 0.431373)
 	CtrlClickTPButton.TextStrokeTransparency = 0
-	
+
 	local FlashlightButton = Instance.new("TextButton")
 	FlashlightButton.Name = "FlashlightButton"
 	FlashlightButton.Parent = Page2
@@ -304,7 +304,7 @@ if not BLOCK then
 	FlashlightButton.TextScaled = true
 	FlashlightButton.TextStrokeColor3 = Color3.new(0.180392, 0, 0.431373)
 	FlashlightButton.TextStrokeTransparency = 0
-	
+
 	local FlyButton = Instance.new("TextButton")
 	FlyButton.Name = "FlyButton"
 	FlyButton.Parent = Page2
@@ -356,7 +356,7 @@ if not BLOCK then
 	AimbotActiveG.Size = UDim2.new(0, 16,0, 16)
 	AimbotActiveG.Position = UDim2.new(0.8, 0,0.4675, 0)
 	AimbotActiveG.BackgroundColor3 = Color3.new(0.666667, 0, 0)
-	
+
 	local FlashlightActiveG = Instance.new("ImageLabel")
 	FlashlightActiveG.Name = "FlashlightActive"
 	FlashlightActiveG.Parent = Page2
@@ -377,14 +377,14 @@ if not BLOCK then
 	CtrlClickTPStatus.Size = UDim2.new(0, 22,0, 22)
 	CtrlClickTPStatus.Position = UDim2.new(0.671, 0,0.692, 0)
 	CtrlClickTPStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
-	
+
 	local FlashlightStatus = Instance.new("ImageLabel")
 	FlashlightStatus.Name = "FlashlightStatus"
 	FlashlightStatus.Parent = Page2
 	FlashlightStatus.Size = UDim2.new(0, 22,0, 22)
 	FlashlightStatus.Position = UDim2.new(0.674, 0,0.122, 0) --117 = 122
 	FlashlightStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
-	
+
 	local FlyStatus = Instance.new("ImageLabel")
 	FlyStatus.Name = "FlyStatus"
 	FlyStatus.Parent = Page2
@@ -478,7 +478,7 @@ if not BLOCK then
 	AimButtonVvod.TextStrokeColor3 = Color3.new(0, 1, 0.498039)
 	AimButtonVvod.TextStrokeTransparency = 0
 	AimButtonVvod.TextWrapped = true
-	
+
 	local FlashlightButtonText = Instance.new("TextLabel")
 	FlashlightButtonText.Name = "FlashlightButtonText"
 	FlashlightButtonText.Parent = Frame
@@ -494,7 +494,7 @@ if not BLOCK then
 	FlashlightButtonText.TextStrokeColor3 = Color3.new(0, 1, 0.498039)
 	FlashlightButtonText.TextStrokeTransparency = 0
 	FlashlightButtonText.TextWrapped = true
-	
+
 	local FlashlightButtonVvod = Instance.new("TextBox")
 	FlashlightButtonVvod.Name = "FlashlightButtonVvod"
 	FlashlightButtonVvod.Parent = Frame
@@ -510,7 +510,7 @@ if not BLOCK then
 	FlashlightButtonVvod.TextStrokeColor3 = Color3.new(0, 1, 0.498039)
 	FlashlightButtonVvod.TextStrokeTransparency = 0
 	FlashlightButtonVvod.TextWrapped = true
-	
+
 	local FlyButtonText = Instance.new("TextLabel")
 	FlyButtonText.Name = "FlyButtonText"
 	FlyButtonText.Parent = Frame
@@ -526,7 +526,7 @@ if not BLOCK then
 	FlyButtonText.TextStrokeColor3 = Color3.new(0, 1, 0.498039)
 	FlyButtonText.TextStrokeTransparency = 0
 	FlyButtonText.TextWrapped = true
-	
+
 	local FlyButtonVvod = Instance.new("TextBox")
 	FlyButtonVvod.Name = "FlyButtonVvod"
 	FlyButtonVvod.Parent = Frame
@@ -607,30 +607,30 @@ if not BLOCK then
 		FlashlightStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
 		FlyStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
 	end
-	
+
 	local function TurnPage()
 		if PageStatus1.Value == true then
-			
+
 			PageStatus1.Value = false
 			PageStatus2.Value = true
-			
+
 			for k,v in Page1:GetChildren() do
 				if not v:IsA("BoolValue") then
 					v.Visible = false
 				end
 			end
-			
+
 			for k,v in Page2:GetChildren() do
 				if not v:IsA("BoolValue") then
 					v.Visible = true
 				end
 			end
-			
+
 		else
-			
+
 			PageStatus1.Value = true
 			PageStatus2.Value = false
-			
+
 			for k,v in Page1:GetChildren() do
 				if not v:IsA("BoolValue") then
 					v.Visible = true
@@ -642,7 +642,7 @@ if not BLOCK then
 					v.Visible = false
 				end
 			end
-			
+
 		end
 	end
 
@@ -654,7 +654,7 @@ if not BLOCK then
 		print("Saturn Cheat has been closed")
 		script:Destroy()
 	end)
-	
+
 	Scroller.MouseButton1Click:Connect(function()
 		if CheatOn then
 			playSound()
@@ -723,7 +723,7 @@ if not BLOCK then
 		else
 			ConfigOpenned = false
 			TurnPage()
-			
+
 			Scroller.Visible = true
 			AimbotTeamCheckButton.Visible = false
 			AimbotTeamCheckStatus.Visible = false
@@ -737,9 +737,9 @@ if not BLOCK then
 			FlyButtonVvod.Visible = false
 		end
 	end)
-	
+
 	local nowe = false
-	
+
 	local function FlyProcess()
 		local speaker = game:GetService("Players").LocalPlayer
 		local speeds = 1
@@ -913,7 +913,7 @@ if not BLOCK then
 			tpwalking = false
 		end
 	end
-	
+
 	local function PlayFlashlightClick()
 		local sound = Instance.new("Sound")
 		sound.SoundId = "rbxassetid://9070807695"
@@ -923,7 +923,7 @@ if not BLOCK then
 		wait(2)
 		sound:Destroy()
 	end
-	
+
 	local function SpawnLight()
 		local Flashlight = Instance.new("PointLight")
 		Flashlight.Name = "Flashlight"
@@ -966,7 +966,7 @@ if not BLOCK then
 			end
 		end
 	end)
-	
+
 	FlyButton.MouseButton1Click:Connect(function()  
 		if CheatOn then
 			if not Fly then
@@ -982,7 +982,7 @@ if not BLOCK then
 			end
 		end
 	end)
-	
+
 	FlashlightButton.MouseButton1Click:Connect(function()  
 		if CheatOn then
 			if not Flashlight then
@@ -1168,7 +1168,7 @@ if not BLOCK then
 				else
 					print(AimButtonVvod.ContentText)
 				end
-				
+
 				if FlashlightButtonVvod.ContentText == "F" then
 					FlashlightRealButton = Enum.KeyCode.F
 				elseif FlashlightButtonVvod.ContentText == "T" then
@@ -1208,7 +1208,7 @@ if not BLOCK then
 				else
 					print(FlashlightButtonVvod.ContentText)
 				end
-				
+
 				if FlyButtonVvod.ContentText == "F" then
 					FlyRealButton = Enum.KeyCode.F
 				elseif FlyButtonVvod.ContentText == "T" then
@@ -1434,7 +1434,7 @@ if not BLOCK then
 	end)
 
 	local char = player.Character
-	
+
 	local function onCharAdded()
 		wait(1)
 		char = player.Character
@@ -1487,9 +1487,9 @@ if not BLOCK then
 		ThirdSpeed = false
 		Noclip = false
 	end)
-	
+
 	onCharAdded()
-	
+
 else
 	local sound = Instance.new("Sound")
 	sound.SoundId = BLOCK_SOUND
