@@ -912,13 +912,17 @@ if not BLOCK then
 			while char do
 				if CheatOn then
 					if Noclip then
-						char.UpperTorso.CanCollide = false
-						char.LowerTorso.CanCollide = false
-						char.HumanoidRootPart.CanCollide = false
+						for _, part in pairs(char:GetDescendants()) do
+							if part:IsA("BasePart") and part.CanCollide then
+								part.CanCollide = false
+							end
+						end
 					else
-						char.UpperTorso.CanCollide = true
-						char.LowerTorso.CanCollide = true
-						char.HumanoidRootPart.CanCollide = true
+						for _, part in pairs(char:GetDescendants()) do
+							if part:IsA("BasePart") then
+								part.CanCollide = true
+							end
+						end
 					end
 				end
 				task.wait()
