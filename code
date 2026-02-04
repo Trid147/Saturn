@@ -450,6 +450,7 @@ if not BLOCK then
 		OffCheat()
 		playSound()
 		print("Saturn Cheat has been closed")
+		script:Destroy()
 	end)
 
 	Activate.MouseButton1Click:Connect(function()  
