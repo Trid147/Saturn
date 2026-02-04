@@ -304,6 +304,22 @@ if not BLOCK then
 	FlashlightButton.TextScaled = true
 	FlashlightButton.TextStrokeColor3 = Color3.new(0.180392, 0, 0.431373)
 	FlashlightButton.TextStrokeTransparency = 0
+	
+	local FlyButton = Instance.new("TextButton")
+	FlyButton.Name = "FlyButton"
+	FlyButton.Parent = Page2
+	FlyButton.BackgroundColor3 = Color3.new(0.862745, 0.588235, 0.862745) --0.266667, 0.00392157, 0.627451
+	FlyButton.BorderColor3 = Color3.new(0.180392, 0, 0.431373)
+	FlyButton.BorderSizePixel = 2
+	FlyButton.Position = UDim2.new(0.082, 0,0.226, 0)
+	FlyButton.Size = UDim2.new(0, 154,0, 34)
+	FlyButton.Font = Enum.Font.Highway
+	FlyButton.FontSize = Enum.FontSize.Size28
+	FlyButton.Text = "Fly"
+	FlyButton.TextColor3 = Color3.new(1, 1, 1)
+	FlyButton.TextScaled = true
+	FlyButton.TextStrokeColor3 = Color3.new(0.180392, 0, 0.431373)
+	FlyButton.TextStrokeTransparency = 0
 
 	--FunctionStatuses
 	local NoclipStatus = Instance.new("ImageLabel")
@@ -368,6 +384,13 @@ if not BLOCK then
 	FlashlightStatus.Size = UDim2.new(0, 22,0, 22)
 	FlashlightStatus.Position = UDim2.new(0.674, 0,0.122, 0) --117 = 122
 	FlashlightStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
+	
+	local FlyStatus = Instance.new("ImageLabel")
+	FlyStatus.Name = "FlyStatus"
+	FlyStatus.Parent = Page2
+	FlyStatus.Size = UDim2.new(0, 22,0, 22)
+	FlyStatus.Position = UDim2.new(0.673, 0,0.236, 0)
+	FlyStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
 
 	local AimbotTeamCheckButton = Instance.new("TextButton")
 	AimbotTeamCheckButton.Name = "AimbotTeamCheckButton"
@@ -487,6 +510,38 @@ if not BLOCK then
 	FlashlightButtonVvod.TextStrokeColor3 = Color3.new(0, 1, 0.498039)
 	FlashlightButtonVvod.TextStrokeTransparency = 0
 	FlashlightButtonVvod.TextWrapped = true
+	
+	local FlyButtonText = Instance.new("TextLabel")
+	FlyButtonText.Name = "FlyButtonText"
+	FlyButtonText.Parent = Frame
+	FlyButtonText.BackgroundColor3 = Color3.new(1, 1, 1)
+	FlyButtonText.BackgroundTransparency = 1
+	FlyButtonText.Position = UDim2.new(0.082, 0,0.556, 0)
+	FlyButtonText.Size = UDim2.new(0, 118,0, 25)
+	FlyButtonText.Font = Enum.Font.SourceSans
+	FlyButtonText.FontSize = Enum.FontSize.Size18
+	FlyButtonText.Text = "Fly button:"
+	FlyButtonText.TextColor3 = Color3.new(1, 1, 1)
+	FlyButtonText.TextSize = 20
+	FlyButtonText.TextStrokeColor3 = Color3.new(0, 1, 0.498039)
+	FlyButtonText.TextStrokeTransparency = 0
+	FlyButtonText.TextWrapped = true
+	
+	local FlyButtonVvod = Instance.new("TextBox")
+	FlyButtonVvod.Name = "FlyButtonVvod"
+	FlyButtonVvod.Parent = Frame
+	FlyButtonVvod.BackgroundColor3 = Color3.new(0, 1, 0.498039)
+	FlyButtonVvod.BackgroundTransparency = 0.5
+	FlyButtonVvod.Position = UDim2.new(0.500, 0,0.560, 0)
+	FlyButtonVvod.Size = UDim2.new(0, 75,0, 25)
+	FlyButtonVvod.Font = Enum.Font.SourceSans
+	FlyButtonVvod.FontSize = Enum.FontSize.Size18
+	FlyButtonVvod.Text = "J"
+	FlyButtonVvod.TextColor3 = Color3.new(0,0,0)
+	FlyButtonVvod.TextSize = 17
+	FlyButtonVvod.TextStrokeColor3 = Color3.new(0, 1, 0.498039)
+	FlyButtonVvod.TextStrokeTransparency = 0
+	FlyButtonVvod.TextWrapped = true
 
 	AimbotTeamCheckButton.Visible = false
 	AimbotTeamCheckStatus.Visible = false
@@ -499,6 +554,10 @@ if not BLOCK then
 	FlashlightButtonText.Visible = false
 	FlashlightButtonVvod.Visible = false
 	FlashlightActiveG.Visible = false
+	FlyButton.Visible = false
+	FlyStatus.Visible = false
+	FlyButtonText.Visible = false
+	FlyButtonVvod.Visible = false
 
 	local ConfigOpenned = false
 
@@ -513,6 +572,7 @@ if not BLOCK then
 	local ESP = false
 	local CtrlClickTP = false
 	local Flashlight = false
+	local Fly = false
 
 	local FirstSpeed = false
 	local SecondSpeed = false
@@ -525,7 +585,8 @@ if not BLOCK then
 		CtrlClickTP = false
 		FlyJump = false
 		Aimbot = false
-		flashlight = false
+		Flashlight = false
+		Fly = false
 
 		FirstSpeed = false
 		SecondSpeed = false
@@ -543,6 +604,8 @@ if not BLOCK then
 		CtrlClickTPStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
 		FlyJumpStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
 		AimbotStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
+		FlashlightStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
+		FlyStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
 	end
 	
 	local function TurnPage()
@@ -629,6 +692,7 @@ if not BLOCK then
 	Config.MouseButton1Click:Connect(function()  
 		if not ConfigOpenned then
 			ConfigOpenned = true
+			Scroller.Visible = false
 			NoclipButton.Visible = false
 			NoclipStatus.Visible = false
 			FlyJumpButton.Visible = false
@@ -643,6 +707,8 @@ if not BLOCK then
 			CtrlClickTPStatus.Visible = false
 			AimbotActiveG.Visible = false
 			FlashlightActiveG.Visible = false
+			FlyButton.Visible = false
+			FlyStatus.Visible = false
 
 			AimbotTeamCheckButton.Visible = true
 			AimbotTeamCheckStatus.Visible = true
@@ -652,10 +718,13 @@ if not BLOCK then
 			AimButtonVvod.Visible = true
 			FlashlightButtonText.Visible = true
 			FlashlightButtonVvod.Visible = true
+			FlyButtonText.Visible = true
+			FlyButtonVvod.Visible = true
 		else
 			ConfigOpenned = false
 			TurnPage()
-
+			
+			Scroller.Visible = true
 			AimbotTeamCheckButton.Visible = false
 			AimbotTeamCheckStatus.Visible = false
 			MediumSpeedText.Visible = false
@@ -664,8 +733,186 @@ if not BLOCK then
 			AimButtonVvod.Visible = false
 			FlashlightButtonText.Visible = false
 			FlashlightButtonVvod.Visible = false
+			FlyButtonText.Visible = false
+			FlyButtonVvod.Visible = false
 		end
 	end)
+	
+	local nowe = false
+	
+	local function FlyProcess()
+		local speaker = game:GetService("Players").LocalPlayer
+		local speeds = 1
+		if nowe == true then
+			nowe = false
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Climbing,true)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown,true)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Flying,true)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Freefall,true)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.GettingUp,true)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Jumping,true)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Landed,true)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Physics,true)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.PlatformStanding,true)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Ragdoll,true)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Running,true)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.RunningNoPhysics,true)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated,true)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.StrafingNoPhysics,true)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Swimming,true)
+			speaker.Character.Humanoid:ChangeState(Enum.HumanoidStateType.RunningNoPhysics)
+		else 
+			nowe = true
+			for i = 1, speeds do
+				spawn(function()
+
+					local hb = game:GetService("RunService").Heartbeat	
+
+
+					tpwalking = true
+					local chr = game.Players.LocalPlayer.Character
+					local hum = chr and chr:FindFirstChildWhichIsA("Humanoid")
+					while tpwalking and hb:Wait() and chr and hum and hum.Parent do
+						if hum.MoveDirection.Magnitude > 0 then
+							chr:TranslateBy(hum.MoveDirection)
+						end
+					end
+
+				end)
+			end
+			game.Players.LocalPlayer.Character.Animate.Disabled = true
+			local Char = game.Players.LocalPlayer.Character
+			local Hum = Char:FindFirstChildOfClass("Humanoid") or Char:FindFirstChildOfClass("AnimationController")
+
+			for i,v in next, Hum:GetPlayingAnimationTracks() do
+				v:AdjustSpeed(0)
+			end
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Climbing,false)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.FallingDown,false)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Flying,false)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Freefall,false)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.GettingUp,false)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Jumping,false)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Landed,false)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Physics,false)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.PlatformStanding,false)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Ragdoll,false)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Running,false)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.RunningNoPhysics,false)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Seated,false)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.StrafingNoPhysics,false)
+			speaker.Character.Humanoid:SetStateEnabled(Enum.HumanoidStateType.Swimming,false)
+			speaker.Character.Humanoid:ChangeState(Enum.HumanoidStateType.Swimming)
+		end
+
+		if game:GetService("Players").LocalPlayer.Character:FindFirstChildOfClass("Humanoid").RigType == Enum.HumanoidRigType.R6 then
+			local plr = game.Players.LocalPlayer
+			local torso = plr.Character.Torso
+			local flying = true
+			local deb = true
+			local ctrl = {f = 0, b = 0, l = 0, r = 0}
+			local lastctrl = {f = 0, b = 0, l = 0, r = 0}
+			local maxspeed = 50
+			local speed = 0
+
+			local bg = Instance.new("BodyGyro", torso)
+			bg.P = 9e4
+			bg.maxTorque = Vector3.new(9e9, 9e9, 9e9)
+			bg.cframe = torso.CFrame
+			local bv = Instance.new("BodyVelocity", torso)
+			bv.velocity = Vector3.new(0,0.1,0)
+			bv.maxForce = Vector3.new(9e9, 9e9, 9e9)
+			if nowe == true then
+				plr.Character.Humanoid.PlatformStand = true
+			end
+			while nowe == true or game:GetService("Players").LocalPlayer.Character.Humanoid.Health == 0 do
+				game:GetService("RunService").RenderStepped:Wait()
+
+				if ctrl.l + ctrl.r ~= 0 or ctrl.f + ctrl.b ~= 0 then
+					speed = speed+.5+(speed/maxspeed)
+					if speed > maxspeed then
+						speed = maxspeed
+					end
+				elseif not (ctrl.l + ctrl.r ~= 0 or ctrl.f + ctrl.b ~= 0) and speed ~= 0 then
+					speed = speed-1
+					if speed < 0 then
+						speed = 0
+					end
+				end
+				if (ctrl.l + ctrl.r) ~= 0 or (ctrl.f + ctrl.b) ~= 0 then
+					bv.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (ctrl.f+ctrl.b)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(ctrl.l+ctrl.r,(ctrl.f+ctrl.b)*.2,0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p))*speed
+					lastctrl = {f = ctrl.f, b = ctrl.b, l = ctrl.l, r = ctrl.r}
+				elseif (ctrl.l + ctrl.r) == 0 and (ctrl.f + ctrl.b) == 0 and speed ~= 0 then
+					bv.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (lastctrl.f+lastctrl.b)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(lastctrl.l+lastctrl.r,(lastctrl.f+lastctrl.b)*.2,0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p))*speed
+				else
+					bv.velocity = Vector3.new(0,0,0)
+				end
+				--	game.Players.LocalPlayer.Character.Animate.Disabled = true
+				bg.cframe = game.Workspace.CurrentCamera.CoordinateFrame * CFrame.Angles(-math.rad((ctrl.f+ctrl.b)*50*speed/maxspeed),0,0)
+			end
+			ctrl = {f = 0, b = 0, l = 0, r = 0}
+			lastctrl = {f = 0, b = 0, l = 0, r = 0}
+			speed = 0
+			bg:Destroy()
+			bv:Destroy()
+			plr.Character.Humanoid.PlatformStand = false
+			game.Players.LocalPlayer.Character.Animate.Disabled = false
+			tpwalking = false
+		else
+			local plr = game.Players.LocalPlayer
+			local UpperTorso = plr.Character.UpperTorso
+			local flying = true
+			local deb = true
+			local ctrl = {f = 0, b = 0, l = 0, r = 0}
+			local lastctrl = {f = 0, b = 0, l = 0, r = 0}
+			local maxspeed = 50
+			local speed = 0
+
+			local bg = Instance.new("BodyGyro", UpperTorso)
+			bg.P = 9e4
+			bg.maxTorque = Vector3.new(9e9, 9e9, 9e9)
+			bg.cframe = UpperTorso.CFrame
+			local bv = Instance.new("BodyVelocity", UpperTorso)
+			bv.velocity = Vector3.new(0,0.1,0)
+			bv.maxForce = Vector3.new(9e9, 9e9, 9e9)
+			if nowe == true then
+				plr.Character.Humanoid.PlatformStand = true
+			end
+			while nowe == true or game:GetService("Players").LocalPlayer.Character.Humanoid.Health == 0 do
+				wait()
+
+				if ctrl.l + ctrl.r ~= 0 or ctrl.f + ctrl.b ~= 0 then
+					speed = speed+.5+(speed/maxspeed)
+					if speed > maxspeed then
+						speed = maxspeed
+					end
+				elseif not (ctrl.l + ctrl.r ~= 0 or ctrl.f + ctrl.b ~= 0) and speed ~= 0 then
+					speed = speed-1
+					if speed < 0 then
+						speed = 0
+					end
+				end
+				if (ctrl.l + ctrl.r) ~= 0 or (ctrl.f + ctrl.b) ~= 0 then
+					bv.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (ctrl.f+ctrl.b)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(ctrl.l+ctrl.r,(ctrl.f+ctrl.b)*.2,0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p))*speed
+					lastctrl = {f = ctrl.f, b = ctrl.b, l = ctrl.l, r = ctrl.r}
+				elseif (ctrl.l + ctrl.r) == 0 and (ctrl.f + ctrl.b) == 0 and speed ~= 0 then
+					bv.velocity = ((game.Workspace.CurrentCamera.CoordinateFrame.lookVector * (lastctrl.f+lastctrl.b)) + ((game.Workspace.CurrentCamera.CoordinateFrame * CFrame.new(lastctrl.l+lastctrl.r,(lastctrl.f+lastctrl.b)*.2,0).p) - game.Workspace.CurrentCamera.CoordinateFrame.p))*speed
+				else
+					bv.velocity = Vector3.new(0,0,0)
+				end
+
+				bg.cframe = game.Workspace.CurrentCamera.CoordinateFrame * CFrame.Angles(-math.rad((ctrl.f+ctrl.b)*50*speed/maxspeed),0,0)
+			end
+			ctrl = {f = 0, b = 0, l = 0, r = 0}
+			lastctrl = {f = 0, b = 0, l = 0, r = 0}
+			speed = 0
+			bg:Destroy()
+			bv:Destroy()
+			plr.Character.Humanoid.PlatformStand = false
+			game.Players.LocalPlayer.Character.Animate.Disabled = false
+			tpwalking = false
+		end
+	end
 	
 	local function PlayFlashlightClick()
 		local sound = Instance.new("Sound")
@@ -716,6 +963,22 @@ if not BLOCK then
 				FlyJump = false
 				FlyJumpStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
 				playSound()
+			end
+		end
+	end)
+	
+	FlyButton.MouseButton1Click:Connect(function()  
+		if CheatOn then
+			if not Fly then
+				Fly = true
+				FlyStatus.BackgroundColor3 = Color3.new(0, 0.666667, 0)
+				playSound()
+				FlyProcess()
+			else
+				Fly = false
+				FlyStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
+				playSound()
+				FlyProcess()
 			end
 		end
 	end)
@@ -861,6 +1124,7 @@ if not BLOCK then
 
 	local AimRealButton = Enum.KeyCode.F
 	local FlashlightRealButton = Enum.KeyCode.Q
+	local FlyRealButton = Enum.KeyCode.J
 
 	spawn(function()  
 		while wait(1) do
@@ -897,6 +1161,10 @@ if not BLOCK then
 					AimRealButton = Enum.KeyCode.N
 				elseif AimButtonVvod.ContentText == "Q" then
 					AimRealButton = Enum.KeyCode.Q
+				elseif AimButtonVvod.ContentText == "U" then
+					AimRealButton = Enum.KeyCode.U
+				elseif AimButtonVvod.ContentText == "B" then
+					AimRealButton = Enum.KeyCode.B
 				else
 					print(AimButtonVvod.ContentText)
 				end
@@ -933,6 +1201,50 @@ if not BLOCK then
 					FlashlightRealButton = Enum.KeyCode.N
 				elseif FlashlightButtonVvod.ContentText == "Q" then
 					FlashlightRealButton = Enum.KeyCode.Q
+				elseif FlashlightButtonVvod.ContentText == "U" then
+					FlashlightRealButton = Enum.KeyCode.U
+				elseif FlashlightButtonVvod.ContentText == "B" then
+					FlashlightRealButton = Enum.KeyCode.B
+				else
+					print(FlashlightButtonVvod.ContentText)
+				end
+				
+				if FlyButtonVvod.ContentText == "F" then
+					FlyRealButton = Enum.KeyCode.F
+				elseif FlyButtonVvod.ContentText == "T" then
+					FlyRealButton = Enum.KeyCode.T
+				elseif FlyButtonVvod.ContentText == "Y" then
+					FlyRealButton = Enum.KeyCode.Y
+				elseif FlyButtonVvod.ContentText == "I" then
+					FlyRealButton = Enum.KeyCode.I
+				elseif FlyButtonVvod.ContentText == "K" then
+					FlyRealButton = Enum.KeyCode.K
+				elseif FlyButtonVvod.ContentText == "J" then
+					FlyRealButton = Enum.KeyCode.J
+				elseif FlyButtonVvod.ContentText == "L" then
+					FlyRealButton = Enum.KeyCode.L
+				elseif FlyButtonVvod.ContentText == "H" then
+					FlyRealButton = Enum.KeyCode.H
+				elseif FlyButtonVvod.ContentText == "R" then
+					FlyRealButton = Enum.KeyCode.R
+				elseif FlyButtonVvod.ContentText == "V" then
+					FlyRealButton = Enum.KeyCode.V
+				elseif FlyButtonVvod.ContentText == "G" then
+					FlyRealButton = Enum.KeyCode.G
+				elseif FlyButtonVvod.ContentText == "H" then
+					FlyRealButton = Enum.KeyCode.H
+				elseif FlyButtonVvod.ContentText == "E" then
+					FlyRealButton = Enum.KeyCode.E
+				elseif FlyButtonVvod.ContentText == "M" then
+					FlyRealButton = Enum.KeyCode.M
+				elseif FlyButtonVvod.ContentText == "N" then
+					FlyRealButton = Enum.KeyCode.N
+				elseif FlyButtonVvod.ContentText == "Q" then
+					FlyRealButton = Enum.KeyCode.Q
+				elseif FlyButtonVvod.ContentText == "U" then
+					FlyRealButton = Enum.KeyCode.U
+				elseif FlyButtonVvod.ContentText == "B" then
+					FlyRealButton = Enum.KeyCode.B
 				else
 					print(FlashlightButtonVvod.ContentText)
 				end
@@ -968,6 +1280,15 @@ if not BLOCK then
 					end
 					PlayFlashlightClick()
 				end
+			end
+			if input.KeyCode == FlyRealButton then
+				Fly = not Fly
+				if Fly then
+					FlyStatus.BackgroundColor3 = Color3.new(0, 0.666667, 0)
+				else
+					FlyStatus.BackgroundColor3 = Color3.new(0.666667, 0, 0)
+				end
+				FlyProcess()
 			end
 		end
 	end)
@@ -1146,7 +1467,9 @@ if not BLOCK then
 					else
 						for _, part in pairs(char:GetDescendants()) do
 							if part:IsA("BasePart") then
-								part.CanCollide = true
+								if part.Name == "LowerTorso" or part.Name == "UpperTorso" or part.Name == "HumanoidRootPart" then
+									part.CanCollide = true
+								end
 							end
 						end
 					end
