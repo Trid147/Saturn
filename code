@@ -884,8 +884,8 @@ if not BLOCK then
 	end)
 
 	local char = player.Character
-
-	player.CharacterAdded:Connect(function(character: Model)
+	
+	local function onCharAdded()
 		wait()
 		char = player.Character
 		spawn(function()  
@@ -904,7 +904,7 @@ if not BLOCK then
 				task.wait()
 			end
 		end)
-		
+
 		spawn(function()  
 			while char do
 				if CheatOn then
@@ -921,7 +921,9 @@ if not BLOCK then
 				task.wait()
 			end
 		end)
-	end)
+	end
+
+	player.CharacterAdded:Connect(onCharAdded)
 
 	player.Character.Humanoid.Died:Connect(function()
 		FirstSpeed = false
@@ -929,6 +931,8 @@ if not BLOCK then
 		ThirdSpeed = false
 		Noclip = false
 	end)
+	
+	onCharAdded()
 	
 else
 	local sound = Instance.new("Sound")
