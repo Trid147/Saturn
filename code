@@ -360,7 +360,7 @@ if not BLOCK then
 	MediumSpeedVvod.TextStrokeColor3 = Color3.new(0, 1, 0.498039)
 	MediumSpeedVvod.TextStrokeTransparency = 0
 	MediumSpeedVvod.TextWrapped = true
-	
+
 	local AimButtonText = Instance.new("TextLabel")
 	AimButtonText.Name = "AimButtonText"
 	AimButtonText.Parent = Frame
@@ -376,7 +376,7 @@ if not BLOCK then
 	AimButtonText.TextStrokeColor3 = Color3.new(0, 1, 0.498039)
 	AimButtonText.TextStrokeTransparency = 0
 	AimButtonText.TextWrapped = true
-	
+
 	local AimButtonVvod = Instance.new("TextBox")
 	AimButtonVvod.Name = "AimButtonVvod"
 	AimButtonVvod.Parent = Frame
@@ -682,9 +682,9 @@ if not BLOCK then
 			end
 		end
 	end)
-	
+
 	local AimRealButton = Enum.KeyCode.F
-	
+
 	spawn(function()  
 		while wait(1) do
 			if CheatOn then
@@ -888,6 +888,39 @@ if not BLOCK then
 	player.CharacterAdded:Connect(function(character: Model)
 		wait()
 		char = player.Character
+		spawn(function()  
+			while char do
+				if CheatOn then
+					if SpeedHack then
+						if FirstSpeed then
+							char.Humanoid.WalkSpeed = 16
+						elseif SecondSpeed then
+							char.Humanoid.WalkSpeed = tonumber(MediumSpeedVvod.ContentText)
+						elseif ThirdSpeed then
+							char.Humanoid.WalkSpeed = 200
+						end
+					end
+				end
+				task.wait()
+			end
+		end)
+		
+		spawn(function()  
+			while char do
+				if CheatOn then
+					if Noclip then
+						char.UpperTorso.CanCollide = false
+						char.LowerTorso.CanCollide = false
+						char.HumanoidRootPart.CanCollide = false
+					else
+						char.UpperTorso.CanCollide = true
+						char.LowerTorso.CanCollide = true
+						char.HumanoidRootPart.CanCollide = true
+					end
+				end
+				task.wait()
+			end
+		end)
 	end)
 
 	player.Character.Humanoid.Died:Connect(function()
@@ -896,38 +929,7 @@ if not BLOCK then
 		ThirdSpeed = false
 		Noclip = false
 	end)
-
-	spawn(function()  
-		while task.wait() do
-			if CheatOn then
-				if SpeedHack then
-					if FirstSpeed then
-						char.Humanoid.WalkSpeed = 16
-					elseif SecondSpeed then
-						char.Humanoid.WalkSpeed = tonumber(MediumSpeedVvod.ContentText)
-					elseif ThirdSpeed then
-						char.Humanoid.WalkSpeed = 200
-					end
-				end
-			end
-		end
-	end)
-
-	spawn(function()  
-		while task.wait() do
-			if CheatOn then
-				if Noclip then
-					char.UpperTorso.CanCollide = false
-					char.LowerTorso.CanCollide = false
-					char.HumanoidRootPart.CanCollide = false
-				else
-					char.UpperTorso.CanCollide = true
-					char.LowerTorso.CanCollide = true
-					char.HumanoidRootPart.CanCollide = true
-				end
-			end
-		end
-	end)
+	
 else
 	local sound = Instance.new("Sound")
 	sound.SoundId = BLOCK_SOUND
