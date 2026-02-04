@@ -8,6 +8,8 @@
 	MediumConfig = 40
 }]]
 
+wait(5)
+
 local BLOCK = false
 local BLOCK_SOUND = "rbxassetid://4871543681"
 
@@ -886,7 +888,7 @@ if not BLOCK then
 	local char = player.Character
 	
 	local function onCharAdded()
-		wait()
+		wait(1)
 		char = player.Character
 		spawn(function()  
 			while char do
